@@ -1,0 +1,7 @@
+/home/pedro/Estudos/front-pim-asp/obj/Debug/netcoreapp2.1/front-pim-asp.csproj.AssemblyReference.cache
+/home/pedro/Estudos/front-pim-asp/obj/Debug/netcoreapp2.1/front-pim-asp.GeneratedMSBuildEditorConfig.editorconfig
+/home/pedro/Estudos/front-pim-asp/obj/Debug/netcoreapp2.1/front-pim-asp.AssemblyInfoInputs.cache
+/home/pedro/Estudos/front-pim-asp/obj/Debug/netcoreapp2.1/front-pim-asp.AssemblyInfo.cs
+/home/pedro/Estudos/front-pim-asp/obj/Debug/netcoreapp2.1/front-pim-asp.csproj.CoreCompileInputs.cache
+/home/pedro/Estudos/front-pim-asp/obj/Debug/netcoreapp2.1/front-pim-asp.RazorAssemblyInfo.cache
+/home/pedro/Estudos/front-pim-asp/obj/Debug/netcoreapp2.1/front-pim-asp.RazorAssemblyInfo.cs
