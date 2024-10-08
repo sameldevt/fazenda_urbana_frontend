@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\dev\\workspace\\visual-studio\\fazenda-test\\fazenda-test\\fazenda-test.csproj": {}
+    "C:\\Users\\shell\\source\\repos\\fazenda_urbana_frontend\\fazenda-test.csproj": {}
   },
   "projects": {
-    "C:\\dev\\workspace\\visual-studio\\fazenda-test\\fazenda-test\\fazenda-test.csproj": {
+    "C:\\Users\\shell\\source\\repos\\fazenda_urbana_frontend\\fazenda-test.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\dev\\workspace\\visual-studio\\fazenda-test\\fazenda-test\\fazenda-test.csproj",
+        "projectUniqueName": "C:\\Users\\shell\\source\\repos\\fazenda_urbana_frontend\\fazenda-test.csproj",
         "projectName": "fazenda-test",
-        "projectPath": "C:\\dev\\workspace\\visual-studio\\fazenda-test\\fazenda-test\\fazenda-test.csproj",
-        "packagesPath": "C:\\Users\\samue\\.nuget\\packages\\",
-        "outputPath": "C:\\dev\\workspace\\visual-studio\\fazenda-test\\fazenda-test\\obj\\",
+        "projectPath": "C:\\Users\\shell\\source\\repos\\fazenda_urbana_frontend\\fazenda-test.csproj",
+        "packagesPath": "C:\\Users\\shell\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\shell\\source\\repos\\fazenda_urbana_frontend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\samue\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\shell\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -64,7 +63,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
