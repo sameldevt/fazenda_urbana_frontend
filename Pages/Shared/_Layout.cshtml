@@ -18,18 +18,18 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                    <ul class="navbar-nav flex-grow-1 justify-content-end">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Produtos</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Produtos">Produtos</a>
+                        </li>
+                        <li class="nav-item me-2">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Contato">Contato</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Contato</a>
+                            <a class="nav-link text-dark btn btn-light px-3" asp-area="" asp-page="/Cadastro">Cadastre-se</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Cadastre-se</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Entrar</a>
+                            <a class="nav-link text-light btn btn-dark px-3" asp-area="" asp-page="/Entrar">Entrar</a>
                         </li>
                     </ul>
                 </div>
@@ -42,38 +42,40 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted text-center d-flex justify-content-around">
-        <div class="d-flex flex-column mt-2">
-            <div class="container">
-                <h5>Fazenda VerdeViva</h5>
+    <footer class="border-top footer text-muted text-center">
+        <div class="d-flex justify-content-around mt-2">
+            <div class="d-flex flex-column">
+                <div class="container">
+                    <h5>Fazenda VerdeViva</h5>
+                </div>
+                <div class="container">
+                    &copy; 2024 - Fazenda VerdeViva, Inc.
+                </div>
+                <div class="container">
+                    <p>Todos os direitos reservados.</p>
+                </div>
             </div>
-            <div class="container">
-                &copy; 2024 - Fazenda VerdeViva, Inc.
+            <div class="d-flex flex-column">
+                <div class="container">
+                    <h6>Nossa Fazenda Urbana</h6>
+                </div>
+                <div class="container">
+                    <ul class="list-unstyled">
+                        <li><a class="nav-link text-muted" asp-area="" asp-page="/Privacy">Como produzimos</a></li>
+                        <li><a class="nav-link text-muted" asp-area="" asp-page="/Privacy">FAQ - Perguntas frequentes</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="container">
-                <p>Todos os direitos reservados.</p>
-            </div>
-        </div>
-        <div class="d-flex flex-column">
-            <div class="container">
-                <h6>Nossa Fazenda Urbana</h6>
-            </div>
-            <div class="container">
-                <ul class="list-unstyled">
-                    <li><a class="nav-link text-muted" asp-area="" asp-page="/Privacy">Como produzimos</a></li>
-                    <li><a class="nav-link text-muted" asp-area="" asp-page="/Privacy">FAQ - Perguntas frequentes</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="d-flex flex-column">
-            <div class="container">
-                <h6>Faça seu pedido</h6>
-            </div>
-            <div class="container">
-                <ul class="list-unstyled">
-                    <li><a class="nav-link text-muted" asp-area="" asp-page="/Privacy">Nossos produtos</a></li>
-                    <li><a class="nav-link text-muted" asp-area="" asp-page="/Privacy">Fale conosco</a></li>
-                </ul>
+            <div class="d-flex flex-column">
+                <div class="container">
+                    <h6>Faça seu pedido</h6>
+                </div>
+                <div class="container">
+                    <ul class="list-unstyled">
+                        <li><a class="nav-link text-muted" asp-area="" asp-page="/Privacy">Nossos produtos</a></li>
+                        <li><a class="nav-link text-muted" asp-area="" asp-page="/Privacy">Fale conosco</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </footer>
