@@ -18,6 +18,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\shell\source\repos\fazenda_urbana_frontend
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/shell/source/repos/fazenda_urbana_frontend/Pages/Entrar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRW50cmFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/shell/source/repos/fazenda_urbana_frontend/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

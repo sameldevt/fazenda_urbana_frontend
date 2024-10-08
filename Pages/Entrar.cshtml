@@ -1,0 +1,26 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center my-5 w-75">
+    <h1 class="display-4">Entrar</h1>
+    <form>
+        <div class="mb-3 text-start">
+            <label for="email" class="form-label">E-mail</label>
+            <input type="email" class="form-control" id="email" placeholder="seunome@email.com" required>
+        </div>
+        <div class="mb-3 text-start">
+            <label for="senha" class="form-label">Senha</label>
+            <input type="password" class="form-control" id="senha" placeholder="********" required>
+            <div class="form-text">
+                <a href="#">Esqueci minha senha.</a>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-dark w-100">Acessar conta</button>
+    </form>
+    <div class="text-center mt-3">
+        <span>Ainda não tem cadastro? <a href="#">Crie sua conta aqui.</a></span>
+    </div>
+</div>
