@@ -1,0 +1,29 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Alterar senha";
+}
+
+
+<div class="text-center my-5 w-75">
+    <h1 class="display-4">Alterar Senha</h1>
+    <form>
+        <div class="mb-3 text-start">
+            <label for="email" class="form-label">E-mail</label>
+            <input type="email" class="form-control" id="email" placeholder="seunome@email.com" required>
+        </div>
+        <div class="mb-3 text-start">
+            <label for="nova-senha" class="form-label">Nova Senha</label>
+            <input type="password" class="form-control" id="nova-senha" placeholder="********" required>
+        </div>
+        <div class="mb-3 text-start">
+            <label for="confirmacao-senha" class="form-label">Confirmação da Nova Senha</label>
+            <input type="password" class="form-control" id="confirmacao-senha" placeholder="********" required>
+        </div>
+        <button type="submit" class="btn btn-dark w-100">Alterar Senha</button>
+        <button type="button" class="btn btn-light w-100 mt-2">Cancelar</button>
+    </form>
+    <div class="text-center mt-3">
+        <span>Ainda não tem cadastro? <a href="#">Crie sua conta aqui.</a></span>
+    </div>
+</div>
