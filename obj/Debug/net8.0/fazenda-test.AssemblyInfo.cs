@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("fazenda-test")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d5775fd58d17a5741712524e6127e505977a23c3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3abda164e46f561676c38d84631d9e9421fe34ec")]
 [assembly: System.Reflection.AssemblyProductAttribute("fazenda-test")]
 [assembly: System.Reflection.AssemblyTitleAttribute("fazenda-test")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,0 +1,45 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Cadastro";
+}
+
+<div class="text-center my-5 w-75">
+    <h1 class="display-4">Cadastro</h1>
+    <form>
+        <div class="mb-3 text-start">
+            <label for="nome-completo" class="form-label">Nome completo</label>
+            <input type="text" class="form-control" id="nome-completo" placeholder="Mariana da Silva" required>
+        </div>
+        <div class="mb-3 text-start">
+            <label for="telefone" class="form-label">Telefone</label>
+            <input type="tel" class="form-control" id="telefone" placeholder="(11) 99999-9999" required>
+        </div>
+        <div class="mb-3 text-start">
+            <label for="email" class="form-label">E-mail</label>
+            <input type="email" class="form-control" id="email" placeholder="seunome@email.com" required>
+        </div>
+        <div class="mb-3 text-start">
+            <label for="confirmacao-email" class="form-label">Confirmação do e-mail</label>
+            <input type="email" class="form-control" id="confirmacao-email" placeholder="seunome@email.com" required>
+        </div>
+        <div class="mb-3 text-start">
+            <label for="senha" class="form-label">Senha</label>
+            <input type="password" class="form-control" id="senha" placeholder="********" required>
+        </div>
+        <div class="mb-3 text-start">
+            <label for="confirmacao-senha" class="form-label">Confirmação da senha</label>
+            <input type="password" class="form-control" id="confirmacao-senha" placeholder="********" required>
+        </div>
+        <div class="form-check text-start mb-4">
+            <input class="form-check-input" type="checkbox" value="" id="termos" required>
+            <label class="form-check-label" for="termos">
+                Li e estou de acordo com os Termos de Serviço e Política de Privacidade.
+            </label>
+        </div>
+        <button type="submit" class="btn btn-dark w-100">Cadastrar-se</button>
+    </form>
+    <div class="text-center mt-3">
+        <span>Já tem uma conta? <a asp-area="" asp-page="/Entrar">Clique aqui para entrar</a>.</span>
+    </div>
+</div>
