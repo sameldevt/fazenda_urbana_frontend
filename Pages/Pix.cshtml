@@ -1,0 +1,41 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "PIX";
+}
+
+<div class="container w-75 text-center my-5">
+
+    <!-- Título e Instruções -->
+    <h1 class="display-4">PIX</h1>
+    <p class="text-muted">Escaneie o QR Code a seguir ou utilize a chave PIX.</p>
+
+    <!-- QR Code (Simulação com uma imagem) -->
+    <div class="d-flex justify-content-center mt-3">
+        <img src="/imgs/pix_qrcode.png" alt="QR Code PIX" class="img-fluid">
+    </div>
+
+    <!-- Valor e Chave PIX -->
+    <h2 class="mt-3">R$ 25,65</h2>
+    <p class="text-muted">Chave PIX: (11) 98888-7777</p>
+
+    <!-- Botão de Confirmar Pagamento -->
+    <button class="btn btn-dark mt-2">Confirmar pagamento</button>
+    <p class="text-muted mt-2">Entrega em até 24h.</p>
+
+    <!-- Detalhes de Frete e Valor -->
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <p class="text-muted">Frete</p>
+            <h5>R$ 5,00</h5>
+        </div>
+        <div class="col-md-4">
+            <p class="text-muted">Valor Total</p>
+            <h5>R$ 27,00</h5>
+        </div>
+        <div class="col-md-4">
+            <p class="text-muted">Valor final (-5%)</p>
+            <h5>R$ 25,65</h5>
+        </div>
+    </div>
+</div>
