@@ -1,0 +1,40 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Boleto";
+}
+
+<div class="container w-75 text-center my-5">
+
+    <!-- Título e Instruções -->
+    <h1 class="display-4">Boleto</h1>
+    <p class="text-muted">Escaneie o Código de barras a seguir e nos envie o comprovante por WhatsApp para maior agilidade.</p>
+
+    <!-- Código de barras (Simulação com uma imagem) -->
+    <div class="d-flex justify-content-center mt-3">
+        <img src="/imgs/boleto_barcode.png" alt="Código de Barras do Boleto" class="img-fluid">
+    </div>
+
+    <!-- WhatsApp -->
+    <p class="text-muted">WhatsApp: (11) 98888-7777</p>
+
+    <!-- Botão de Confirmar Pagamento -->
+    <button class="btn btn-dark mt-2">Confirmar pagamento</button>
+    <p class="text-muted mt-2">Entrega em até 24h após a confirmação do pagamento.</p>
+
+    <!-- Detalhes de Frete e Valor -->
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <p class="text-muted">Frete</p>
+            <h5>R$ 5,00</h5>
+        </div>
+        <div class="col-md-4">
+            <p class="text-muted">Valor Total</p>
+            <h5>R$ 27,00</h5>
+        </div>
+        <div class="col-md-4">
+            <p class="text-muted">Valor final</p>
+            <h5>R$ 27,00</h5>
+        </div>
+    </div>
+</div>
