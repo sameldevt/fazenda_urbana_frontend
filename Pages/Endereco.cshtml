@@ -57,4 +57,20 @@
             btnEditar.classList.add('d-none'); // Esconde o botão de "Editar"
             botoesAcoes.classList.remove('d-none'); // Mostra os botões "Salvar" e "Cancelar"
         });
+
+        // Salva os valores iniciais ao carregar a página
+        const valoresIniciais = {};
+        campos.forEach(campo => {
+            valoresIniciais[campo.id] = campo.value;
+        });
+
+        // Função para cancelar a edição e restaurar os valores iniciais
+        document.querySelector('#botoesAcoes .btn-secondary').addEventListener('click', function () {
+            campos.forEach(campo => {
+                campo.disabled = true; // Desabilita novamente os campos
+                campo.value = valoresIniciais[campo.id]; // Restaura os valores iniciais
+            });
+            botoesAcoes.classList.add('d-none'); // Esconde os botões "Salvar" e "Cancelar"
+            btnEditar.classList.remove('d-none'); // Mostra o botão inicial "Editar"
+        });
 </script>
