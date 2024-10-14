@@ -1,0 +1,60 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="container my-5 w-75">
+    <h1 class="display-4 text-center">Cadastro de Endereço</h1>
+    <form id="formEndereco" class="mt-3">
+        <div class="mb-3">
+            <label for="logradouro" class="form-label">Logradouro</label>
+            <input type="text" class="form-control" id="logradouro" placeholder="Rua das Flores" disabled>
+        </div>
+        <div class="mb-3">
+            <label for="numero" class="form-label">Número</label>
+            <input type="text" class="form-control" id="numero" placeholder="1000" disabled>
+        </div>
+        <div class="mb-3">
+            <label for="complemento" class="form-label">Complemento</label>
+            <input type="text" class="form-control" id="complemento" placeholder="Apto 31" disabled>
+        </div>
+        <div class="mb-3">
+            <label for="cep" class="form-label">CEP</label>
+            <input type="text" class="form-control" id="cep" placeholder="10101-010" disabled>
+        </div>
+        <div class="mb-3">
+            <label for="cidade" class="form-label">Cidade</label>
+            <input type="text" class="form-control" id="cidade" placeholder="São Paulo" disabled>
+        </div>
+        <div class="mb-3">
+            <label for="estado" class="form-label">Estado</label>
+            <input type="text" class="form-control" id="estado" placeholder="SP" disabled>
+        </div>
+
+        <!-- Botões que aparecem depois de clicar em "Editar" -->
+        <div id="botoesAcoes" class="d-none text-center">
+            <button type="submit" class="btn btn-dark">Salvar</button>
+            <button type="button" class="btn btn-secondary">Cancelar</button>
+            <button type="reset" class="btn btn-light">Limpar</button>
+        </div>
+    </form>
+    <!-- Botão de editar que aparece inicialmente -->
+    <div class="text-center">
+        <button id="btnEditar" class="btn btn-dark mt-3">Editar</button>
+    </div>
+</div>
+
+<script>// Referencia os elementos
+        const form = document.getElementById('formEndereco');
+        const btnEditar = document.getElementById('btnEditar');
+        const botoesAcoes = document.getElementById('botoesAcoes');
+        const campos = form.querySelectorAll('input');
+
+        // Função para habilitar campos e mostrar botões de salvar/cancelar
+        btnEditar.addEventListener('click', function () {
+            campos.forEach(campo => campo.disabled = false); // Habilita todos os campos
+            btnEditar.classList.add('d-none'); // Esconde o botão de "Editar"
+            botoesAcoes.classList.remove('d-none'); // Mostra os botões "Salvar" e "Cancelar"
+        });
+</script>
