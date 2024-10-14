@@ -1,0 +1,64 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Cartão";
+}
+   
+ <div class="container w-75 my-5">
+
+    <!-- Título -->
+    <h1 class="display-4 mt-4 text-center">Pagamento com Cartão</h1>
+
+    <!-- Formulário de Opções -->
+    <form class="mt-4">
+        <div class="mb-3">
+            <label for="cardNumber" class="form-label">Número do Cartão</label>
+            <input type="text" class="form-control" id="cardNumber" placeholder="Digite o número do cartão">
+        </div>
+        <div class="mb-3">
+            <label for="cardName" class="form-label">Nome no Cartão</label>
+            <input type="text" class="form-control" id="cardName" placeholder="Digite o nome como está no cartão">
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label for="cardExpiration" class="form-label">Validade</label>
+                <input type="text" class="form-control" id="cardExpiration" placeholder="MM/AA">
+            </div>
+            <div class="col-md-4">
+                <label for="cardCvv" class="form-label">CVV</label>
+                <input type="text" class="form-control" id="cardCvv" placeholder="Código de Segurança">
+            </div>
+            <!-- Opções de Pagamento -->
+            <div class="col-md-4">
+                <label for="paymentOption" class="form-label">Opções de Pagamento</label>
+                <select class="form-select" id="paymentOption" name="paymentOption">
+                    <option value="debito">Débito/Ticket</option>
+                    <option value="avista">Crédito à Vista</option>
+                    <option value="2x">2x Sem Juros</option>
+                    <option value="3x">3x Sem Juros</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Botão de Confirmar Pagamento -->
+        <div class="text-center"> 
+        <button type="submit" class="btn btn-dark mt-3">Confirmar pagamento</button>
+        </div>
+    </form>
+
+    <!-- Detalhes de Frete e Valor -->
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <p class="text-muted">Frete</p>
+            <h5>R$ 5,00</h5>
+        </div>
+        <div class="col-md-4">
+            <p class="text-muted">Valor Total</p>
+            <h5>R$ 27,00</h5>
+        </div>
+        <div class="col-md-4">
+            <p class="text-muted">Valor final</p>
+            <h5>R$ 27,00</h5>
+        </div>
+    </div>
+</div>
