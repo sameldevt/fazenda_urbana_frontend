@@ -1,0 +1,19 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Erro no Pagamento";
+}
+
+
+<div class="container my-5 text-center">
+    <h1 class="display-4">Erro no Pagamento</h1>
+    <p class="text-muted">Houve um problema com o processamento do seu pagamento.</p>
+
+    <i class="bi bi-exclamation-triangle" style="font-size: 6rem; color: red;"></i>
+
+    <div class="my-4">
+        <a asp-area="" asp-page="/FormasPagamento" class="btn btn-dark">Tentar novamente</a>
+    </div>
+
+    <p class="small text-muted">Se o problema persistir, entre em contato no WhatsApp (11) 98888-7777.</p>
+</div>
