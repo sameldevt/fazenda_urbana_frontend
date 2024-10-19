@@ -1,0 +1,32 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Minha conta";
+}
+
+
+<div class="container my-5 text-center">
+    <h1 class="display-4">Minha Conta</h1>
+
+    <!-- Ícone de usuário -->
+    <div class="my-3">
+        <i class="bi bi-person-circle" style="font-size: 5rem;"></i>
+    </div>
+
+    <!-- Nome da pessoa -->
+    <h3>Mariana Santos</h3>
+
+    <!-- Data de associação -->
+    <p class="text-muted small">Membro desde 24/01/2018.</p>
+
+    <!-- Botões -->
+    <div class="d-grid gap-3 w-50 mx-auto my-4">
+        <a asp-area="" asp-page="/DadosPessoais" class="btn btn-dark">Dados Pessoais</a>
+        <a asp-area="" asp-page="/Endereco" class="btn btn-secondary">Endereço de Entrega</a>
+    </div>
+
+    <!-- Botão de sair -->
+    <a href="#" class="text-danger">
+        <i class="bi bi-box-arrow-right"></i> Sair
+    </a>
+</div>
