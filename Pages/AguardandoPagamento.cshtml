@@ -1,0 +1,23 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Aguardando Pagamento";
+}
+
+<div class="container my-5 text-center">
+    <h1 class="display-4">Aguardando pagamento</h1>
+    <p class="text-muted">
+        Ainda não recebemos a confirmação de seu pagamento. Caso já tenha realizado, favor entrar em contato no WhatsApp (11) 98888-7777.
+    </p>
+
+    <!-- Ícone de relógio carregando -->
+    <i class="bi bi-hourglass-split" style="font-size: 6rem;"></i>
+
+    <!-- Botão de Voltar aos Meios de Pagamento -->
+    <div class="my-4">
+        <a asp-area="" asp-page="/FormasPagamento" class="btn btn-dark">Voltar aos meios de pagamento</a>
+    </div>
+
+    <!-- Texto pequeno abaixo do botão -->
+    <p class="text-muted small">A entrega será feita em até 24h após a confirmação do pagamento.</p>
+</div>
