@@ -6,7 +6,7 @@
 
 <div class="text-center my-5 w-75">
     <h1 class="display-4">Entrar</h1>
-    <form>
+    <form id="loginForm">
         <div class="mb-3 text-start">
             <label for="email" class="form-label">E-mail</label>
             <input type="email" class="form-control" id="email" placeholder="seunome@email.com" required>
@@ -24,3 +24,40 @@
         <span>Ainda não tem cadastro? <a asp-area="" asp-page="/Cadastro">Crie sua conta aqui.</a></span>
     </div>
 </div>
+<script>
+    const contextUrl = "http://18.188.227.244:8080/verdeviva/usuario/entrar"
+    document.getElementById('loginForm').addEventListener('submit', async function (event) {
+        event.preventDefault(); // Evita o comportamento padrão do formulário
+
+        const email = document.getElementById('email').value;
+        const senha = document.getElementById('senha').value;
+
+        try {
+            const response = await fetch(contextUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: email,
+                    senha: senha
+                })
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                // Manipule a resposta bem-sucedida (por exemplo, redirecione o usuário)
+                console.log('Login bem-sucedido:', data);
+                window.location.href = '/'; // Exemplo de redirecionamento
+            } else {
+                // Manipule erros (como credenciais incorretas)
+                const errorData = await response.json();
+                console.error('Erro no login:', errorData);
+                alert('Erro no login: ' + errorData.message);
+            }
+        } catch (error) {
+            console.error('Erro de rede:', error);
+            alert('Erro de rede, tente novamente mais tarde.');
+        }
+    });
+</script>

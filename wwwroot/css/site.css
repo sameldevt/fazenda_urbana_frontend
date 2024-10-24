@@ -20,3 +20,9 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.product-image {
+    width: 150px; /* Defina a largura desejada */
+    height: 150px; /* Defina a altura desejada */
+    object-fit: contain; /* Mantém o aspecto da imagem preenchendo o container */
+}

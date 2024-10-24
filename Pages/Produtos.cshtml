@@ -1,0 +1,69 @@
+﻿@page
+@model fazenda_test.Pages.ProdutosModel
+@{
+	ViewData["Title"] = "Produtos";
+}
+<div class="container my-5">
+    <!-- Campo de pesquisa e filtro -->
+    <div class="row">
+        <div class="col-md-9">
+            <input type="text" class="form-control" placeholder="Pesquisar produto" aria-label="Pesquisar produto">
+        </div>
+        <div class="col-md-3 text-end">
+            <button class="btn btn-outline-secondary">Filtrar ou ordenar itens</button>
+        </div>
+    </div>
+
+    <!-- Título e lista de produtos -->
+    <h2 class="my-4">Todos os itens</h2>
+    <div class="row" id="product-list">
+        <!-- Produtos serão inseridos aqui -->
+    </div>
+
+    <!-- Paginação -->
+    <div class="row">
+        <div class="col text-center">
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item"><a class="page-link" href="#">Pág. 1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Pág. 2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Pág. 3</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- Script para buscar e renderizar os produtos -->
+<script>
+    const contextUrl = "http://18.188.227.244:8080/verdeviva/produtos/buscar-todos";
+    // Função que cria o HTML de um produto
+    function createProductCard(produto) {
+        return `
+            <div class="col-md-3" style="background-color: cyan; display: flex; flex-direction: column; justify-content: center" >
+                <img src="${produto.imagemUrl}" class="img-fluid product-image" alt="${produto.nome}"
+                        onerror="this.onerror=null;this.src='https://picsum.photos/200';">
+                <h5>${produto.nome}</h5>
+                <p>R\$ ${produto.precoQuilo.toFixed(2)}</p>
+                <a href="#" class="btn btn-link p-0">Ver detalhes</a>
+            </div>
+        `;
+    }
+    
+    // Função para buscar os produtos da API
+    function loadProducts() {
+        fetch(contextUrl)  // URL da sua API que retorna a lista de produtos
+            .then(response => response.json())
+            .then(produtos => {
+                const productList = document.getElementById('product-list');
+                produtos.forEach(produto => {
+                    productList.innerHTML += createProductCard(produto);
+                });
+            })
+            .catch(error => {
+                console.error('Erro ao carregar os produtos:', error);
+            });
+    }
+
+    // Carregar produtos ao carregar a página
+    document.addEventListener('DOMContentLoaded', loadProducts);
+</script>
