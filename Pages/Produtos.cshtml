@@ -5,12 +5,9 @@
 }
 <div class="container my-5">
     <!-- Campo de pesquisa e filtro -->
-    <div class="row input-container">
+    <div class="row input-container mx-auto">
         <div class="col-md-9">
             <input type="text" class="form-control" placeholder="Pesquisar produto" aria-label="Pesquisar produto">
-        </div>
-        <div class="col-md-3 text-end">
-            <button class="btn btn-outline-secondary">Filtrar ou ordenar itens</button>
         </div>
     </div>
 
@@ -19,33 +16,24 @@
     <div class="row" id="product-list">
         <!-- Produtos serão inseridos aqui -->
     </div>
-
-    <!-- Paginação -->
-    <div class="row page-container">
-        <div class="col text-center">
-            <nav aria-label="Page navigation">
-                <ul class="pagination justify-content-center">
-                    <li class="page-item"><a class="page-link" href="#">Pág. 1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Pág. 2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Pág. 3</a></li>
-                </ul>
-            </nav>
-        </div>
-    </div>
 </div>
 <!-- Script para buscar e renderizar os produtos -->
 <script>
     const contextUrl = "http://18.188.227.244:8080/verdeviva/produtos/buscar-todos";
-    // Função que cria o HTML de um produto
+
     function createProductCard(produto) {
         return `
-            <div class="col-md-3 product-container" >
-                <img src="${produto.imagemUrl}" class="img-fluid product-image" alt="${produto.nome}"
-                        onerror="this.onerror=null;this.src='https://picsum.photos/200';">
-                <h5>${produto.nome}</h5>
-                <p>R\$ ${produto.precoQuilo.toFixed(2)}</p>
-                <a href="#" class="btn btn-link p-0">Ver detalhes</a>
-            </div>
+                <div class="col-md-3 product-container product">
+                    <div class="d-flex justify-content-center mb-2">
+                        <img src="${produto.imagemUrl}" class="img-fluid product-image" alt="${produto.nome}"
+                            onerror="this.onerror=null;this.src='https://picsum.photos/200';">
+                    </div>
+                    <div class="justify-content-left mb-2">
+                        <h5>${produto.nome}</h5>
+                        <a href="#" class="btn btn-link p-0" style="color: grey;">Ver detalhes</a>
+                        <p style="color: green;font-size: 20px">R$ ${produto.precoQuilo.toFixed(2)} /kg</p>
+                    </div>
+                </div>
         `;
     }
     

@@ -17,14 +17,18 @@ html {
     min-height: 100%;
 }
 
+
+.nav-color {
+    background: #D5F4D6;
+}
+
 body {
     margin-bottom: 60px;
 }
 
 .product-image {
-    width: 150px; /* Defina a largura desejada */
-    height: 150px; /* Defina a altura desejada */
-    align-self: center;
+    width: 200px; /* Defina a largura desejada */
+    height: 200px; /* Defina a altura desejada */
     object-fit: contain; /* Mantém o aspecto da imagem preenchendo o container */
 }
 .product-container {
@@ -37,4 +41,8 @@ body {
 }
 .input-container {
     margin-bottom: 40px;
+}
+
+.product{
+    cursor: pointer;
 }
