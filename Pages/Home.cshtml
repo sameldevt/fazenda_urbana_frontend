@@ -1,0 +1,99 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+
+<style>
+    .image-container {
+        background-image: url('/imgs/catalogo.png');
+        background-size: cover;
+        background-position: center;
+        height: 300px;
+        position: relative;
+    }
+
+    .overlay {
+        background-color: rgba(255, 255, 255, 0.3);
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .content {
+        text-align: center;
+    }
+</style>
+
+
+<div class="container">
+    <!-- Imagem de fundo -->
+    <div class="image-container">
+        <div class="content overlay fw-bolder text-dark">
+            <div style="background-color: rgba(255, 255, 255, 0.6);">
+                <h1 class="display-4 mt-2 px-4">Produtos frescos, saudáveis e próximos da sua casa</h1>
+                <p class="lead"><strong>Conheça nossa variedade incrível de hortaliças, frutas, verduras e vegetais!</strong></p>
+                <a asp-area="" asp-page="/Produtos" class="btn btn-dark mb-4">Ver catálogo</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Conteúdo -->
+    <div class="container mt-5">
+        <!-- Subtítulo -->
+        <h2 class="display-6">Qualidade Garantida</h2>
+        <p class="text-muted">Veja o que nossos clientes dizem sobre nós.</p>
+    </div>
+
+    <div class="container mt-2 mb-5">
+        <div class="row d-flex">
+            <!-- Testimonial 1 -->
+            <div class="col-md-4">
+                <div class="testimonial-card border p-3">
+                    <p>"Entrega sempre rápida. Nunca comi uma couve tão fresca!"</p>
+                    <div class="d-flex align-items-center">
+                        <img src="https://via.placeholder.com/50" class="rounded-circle me-3" alt="Foto do cliente">
+                        <div>
+                            <strong>Marcos de Andrade</strong><br>
+                            <small>Cliente desde 2021</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Testimonial 2 -->
+            <div class="col-md-4">
+                <div class="testimonial-card border p-3">
+                    <p>"Tudo sempre fresquinho e sem agrotóxicos! Excelente qualidade."</p>
+                    <div class="d-flex align-items-center">
+                        <img src="https://via.placeholder.com/50" class="rounded-circle me-3" alt="Foto do cliente">
+                        <div>
+                            <strong>Juliana Souza</strong><br>
+                            <small>Cliente desde 2018</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Testimonial 3 -->
+            <div class="col-md-4">
+                <div class="testimonial-card border p-3">
+                    <p>"Melhor fazenda urbana da cidade! Comprarei mais vezes."</p>
+                    <div class="d-flex align-items-center">
+                        <img src="https://via.placeholder.com/50" class="rounded-circle me-3" alt="Foto do cliente">
+                        <div>
+                            <strong>Roberto César</strong><br>
+                            <small>Cliente desde 2020</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
