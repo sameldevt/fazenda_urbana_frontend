@@ -9,11 +9,12 @@
     </div>
 </div>
 
-<script>
+<script type="module">
+    import { API_URL } from '/js/config.js';
     // Função para buscar e renderizar os detalhes do produto
     function loadProductDetails() {
         const productId = @Model.ProductId; // ID do produto passado via URL
-        const contextUrl = `http://3.21.97.78:8080/verdeviva/produtos/buscar/${productId}`;
+        const contextUrl = `${API_URL}/produtos/buscar/${productId}`;
 
         fetch(contextUrl)  // URL da API para um produto específico
             .then(response => response.json())
