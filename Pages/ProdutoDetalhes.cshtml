@@ -1,0 +1,40 @@
+@page "{id}"
+@model fazenda_test.Pages.ProdutoDetalhesModel
+@{
+    ViewData["Title"] = "Detalhes do Produto";
+}
+<div class="container my-5">
+    <div id="product-details">
+        <!-- Os detalhes do produto serão carregados aqui -->
+    </div>
+</div>
+
+<script>
+    // Função para buscar e renderizar os detalhes do produto
+    function loadProductDetails() {
+        const productId = @Model.ProductId; // ID do produto passado via URL
+        const contextUrl = `http://3.21.97.78:8080/verdeviva/produtos/buscar/${productId}`;
+
+        fetch(contextUrl)  // URL da API para um produto específico
+            .then(response => response.json())
+            .then(produto => {
+                const productDetails = document.getElementById('product-details');
+                productDetails.innerHTML = `
+                    <img src="${produto.imagemUrl}" class="img-fluid mb-4" alt="${produto.nome}"
+                         onerror="this.onerror=null;this.src='https://picsum.photos/200';">
+                    <h2>${produto.nome}</h2>
+                    <p>Descrição: ${produto.descricao}</p>
+                    <p><strong>Preço: R$ ${produto.precoQuilo.toFixed(2)}</strong></p>
+                    <p><strong>Disponibilidade: ${produto.quantidadeEstoque} kg</strong></p>
+                    <button class="btn btn-primary">Adicionar ao carrinho</button>
+                `;
+            })
+            .catch(error => {
+                console.error('Erro ao carregar os detalhes do produto:', error);
+                document.getElementById('product-details').innerHTML = "<p>Erro ao carregar os detalhes do produto.</p>";
+            });
+    }
+
+    // Carregar os detalhes do produto ao carregar a página
+    document.addEventListener("DOMContentLoaded", loadProductDetails);
+</script>
