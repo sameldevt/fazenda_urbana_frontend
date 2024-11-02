@@ -1,5 +1,5 @@
 // Modificar, caso o IP mude
-const API_URL = "http://3.21.97.78:8080/verdeviva";
+const API_URL = "http://54.227.143.65:8080/verdeviva";
 
-// Torna a vari·vel acessÌvel para outros arquivos .js
+// Torna a vari√°vel acess√≠vel para outros arquivos .js
 export { API_URL };
