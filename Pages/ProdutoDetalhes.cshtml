@@ -4,38 +4,108 @@
     ViewData["Title"] = "Detalhes do Produto";
 }
 <div class="container my-5">
-    <div id="product-details">
-        <!-- Os detalhes do produto serão carregados aqui -->
+    <div class="row">
+        <!-- Imagem do Produto -->
+        <div class="col-md-6">
+            <img id="product-image" src="" class="img-fluid" alt="Imagem do Produto" onerror="this.onerror=null;this.src='https://picsum.photos/200';">
+        </div>
+
+        <!-- Detalhes do Produto -->
+        <div class="col-md-6">
+            <h2 id="product-name">Nome do Produto</h2>
+            <p id="product-description">Descrição do produto.</p>
+            <p><strong id="product-price">Preço</strong></p>
+            <div class="d-flex align-items-center mb-3">
+                <div>
+                    <label for="quantity" class="me-3">Quantidade (kg)</label>
+                    <input type="number" id="quantity" class="form-control w-25 me-3" value="1" min="0.1" step="0.1" onchange="calculateTotal()">
+                </div>
+                <div>
+                    <p>Valor total: </p>
+                    <div>R$ <span id="total-price">0,00</span></div>
+                </div>
+            </div>
+            <button class="btn btn-primary mb-2">Comprar</button>
+            <button class="btn btn-secondary mb-2">Adicionar ao carrinho</button>
+        </div>
+    </div>
+
+    <!-- Produtos Relacionados -->
+    <div class="mt-5">
+        <h4>Relacionados</h4>
+        <div id="related-products-carousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner" id="related-products">
+                <!-- Itens do carrossel serão inseridos aqui -->
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#related-products-carousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#related-products-carousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Próximo</span>
+            </button>
+        </div>
     </div>
 </div>
 
 <script type="module">
     import { API_URL } from '/js/config.js';
-    // Função para buscar e renderizar os detalhes do produto
+
+    // Carrega os detalhes do produto
     function loadProductDetails() {
-        const productId = @Model.ProductId; // ID do produto passado via URL
+        const productId = @Model.ProductId;
         const contextUrl = `${API_URL}/produtos/buscar/${productId}`;
 
-        fetch(contextUrl)  // URL da API para um produto específico
+        fetch(contextUrl)
             .then(response => response.json())
             .then(produto => {
-                const productDetails = document.getElementById('product-details');
-                productDetails.innerHTML = `
-                    <img src="${produto.imagemUrl}" class="img-fluid mb-4" alt="${produto.nome}"
-                         onerror="this.onerror=null;this.src='https://picsum.photos/200';">
-                    <h2>${produto.nome}</h2>
-                    <p>Descrição: ${produto.descricao}</p>
-                    <p><strong>Preço: R$ ${produto.precoQuilo.toFixed(2)}</strong></p>
-                    <p><strong>Disponibilidade: ${produto.quantidadeEstoque} kg</strong></p>
-                    <button class="btn btn-primary">Adicionar ao carrinho</button>
-                `;
+                document.getElementById('product-image').src = produto.imagemUrl;
+                document.getElementById('product-name').innerText = produto.nome;
+                document.getElementById('product-description').innerText = produto.descricao;
+                document.getElementById('product-price').innerText = `R$ ${produto.precoQuilo.toFixed(2)} / kg`;
+                calculateTotal();
             })
-            .catch(error => {
-                console.error('Erro ao carregar os detalhes do produto:', error);
-                document.getElementById('product-details').innerHTML = "<p>Erro ao carregar os detalhes do produto.</p>";
-            });
+            .catch(error => console.error('Erro ao carregar os detalhes do produto:', error));
     }
 
-    // Carregar os detalhes do produto ao carregar a página
-    document.addEventListener("DOMContentLoaded", loadProductDetails);
+    // Calcula o valor total com base na quantidade
+    function calculateTotal() {
+        const quantity = parseFloat(document.getElementById('quantity').value) || 0;
+        const pricePerKg = parseFloat(document.getElementById('product-price').innerText.replace('R$ ', '').replace('/ kg', '')) || 0;
+        const totalPrice = (quantity * pricePerKg).toFixed(2);
+        document.getElementById('total-price').innerText = totalPrice;
+    }
+
+    // Carrega os produtos relacionados
+    function loadRelatedProducts() {
+        const relatedUrl = `${API_URL}/produtos/buscar-todos`;
+
+        fetch(relatedUrl)
+            .then(response => response.json())
+            .then(produtos => {
+                const relatedProductsContainer = document.getElementById('related-products');
+                produtos.forEach((produto, index) => {
+                    const activeClass = index === 0 ? 'active' : '';
+                    relatedProductsContainer.innerHTML += `
+                        <div class="carousel-item ${activeClass}">
+                            <div class="d-flex justify-content-center">
+                                <img src="${produto.imagemUrl}" class="img-fluid rounded" alt="${produto.nome}" style="width: 150px; height: auto;" onerror="this.onerror=null;this.src='https://picsum.photos/150';">
+                            </div>
+                            <div class="text-center mt-2">
+                                <p>${produto.nome}</p>
+                                <p><small>R$ ${produto.preco.toFixed(2)} / ${produto.unidade}</small></p>
+                                <a href="/ProdutoDetalhes/${produto.id}" class="btn btn-link">Ver detalhes</a>
+                            </div>
+                        </div>
+                    `;
+                });
+            })
+            .catch(error => console.error('Erro ao carregar os produtos relacionados:', error));
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        loadProductDetails();
+        loadRelatedProducts();
+    });
 </script>
