@@ -1,0 +1,79 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Meu Carrinho";
+}
+
+<div class="container my-5 w-75">
+
+    <div class="text-center">
+        <h1 class="display-4">Meu carrinho</h1>
+        <p class="lead">Veja os itens em seu carrinho, o valor da entrega e o valor total da compra.</p>
+    </div>
+
+    <div class="row text-center">
+        <!-- Lista de itens no carrinho -->
+        <div class="col-md-8">
+            <div class="row align-items-center">
+                <div class="col-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="https://rb.gy/2xfabn" alt="Imagem da Banana" class="img-fluid rounded me-3" style="width: 80px; height: 80px;">
+                        <div>
+                            <h5 class="mb-1">Banana</h5>
+                            <p class="mb-1">R$ 5,00 / kg</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-3">
+                    <p class="fw-bold">Quantidade (kg)</p>
+                    <p>1,5 kg</p>
+                </div>
+                <div class="col-3">
+                    <p class="fw-bold">Valor total</p>
+                    <p>R$ 7,50</p>
+                </div>
+                <div class="col-2">
+                    <button class="btn btn-outline-secondary w-100 mb-2">Alterar</button>
+                    <button class="btn btn-outline-danger w-100">Excluir</button>
+                </div>
+            </div>
+
+            <!-- Paginação de itens do carrinho -->
+            <!--
+            <nav aria-label="Paginação de itens do carrinho">
+                <ul class="pagination pagination-sm justify-content-center mt-3">
+                    <li class="page-item active"><a class="page-link" href="#">Pág. 1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Pág. 2</a></li>
+                </ul>
+            </nav>
+            -->
+        </div>
+        <!-- Cálculo de Frete e Resumo do Carrinho -->
+        <div class="col-md-4">
+
+            <div class="bg-light p-3 rounded">
+                <h5>Resumo do Carrinho</h5>
+                <div class="d-flex justify-content-between">
+                    <p class="mb-1">Frete:</p>
+                    <p class="mb-1">R$ 0,00</p>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <p class="mb-1">Valor total da compra:</p>
+                    <p class="mb-1">R$ 22,00</p>
+                </div>
+            </div>
+            <button class="btn btn-dark w-100">Continuar compra</button>
+
+            <div class="mt-3">
+                <h5>Calcular frete</h5>
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="CEP para entrega">
+                    <button class="btn btn-outline-secondary">Calcular</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
