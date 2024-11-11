@@ -1,0 +1,170 @@
+/* Animações e transições */
+
+/* Animação de fade-in com deslize para cima */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Definição inicial para seções e produtos - ocultos */
+.image-container, .quality-section, .testimonial-card, .product-card {
+    opacity: 0;
+}
+
+/* Classe de visibilidade para animação */
+.visible {
+    opacity: 1;
+    transform: translateY(0);
+    animation: fadeIn 1.5s ease-out;
+}
+
+
+
+/* Configura uma sequência para cada card de testemunho 
+    .testimonial-card:nth-child(1) {
+        animation-delay: 0.2s;
+    }
+
+    .testimonial-card:nth-child(2) {
+        animation-delay: 0.4s;
+    }
+
+    .testimonial-card:nth-child(3) {
+        animation-delay: 0.6s;
+    }
+        */
+
+/* Hero Section */
+.image-container {
+    background-image: url('/imgs/teste.jpg');
+    /*
+        */
+    /*background-image: none;*/
+    background-size: cover;
+    background-position: center;
+    height: 100vh; /* Ocupa toda a altura da tela */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter: brightness(95%);
+    background-attachment: fixed; /* Efeito parallax para a imagem */
+}
+
+.overlay {
+    background-color: rgba(255, 255, 255, 0.6); /* Sobreposição mais clara */
+    padding: 30px;
+    text-align: center;
+    max-width: 80%; /* Limita a largura da sobreposição */
+    border-radius: 12px;
+}
+
+    .overlay h1 {
+        font-size: 3rem;
+        color: #3C3C3B; /* Cor escura e sóbria */
+        font-weight: 600;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Sombra mais suave para destacar o texto */
+    }
+
+    .overlay p {
+        font-size: 1.4rem;
+        color: #333; /* Cor de texto mais suave */
+        margin-bottom: 30px;
+        font-weight: 300;
+    }
+
+.cta-button {
+    background-color: #4CAF50; /* Cor principal verde */
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-transform: uppercase; /* Letra maiúscula para o botão */
+    letter-spacing: 1px; /* Espaçamento nas letras */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+    .cta-button:hover {
+        background-color: #3D8B40;
+        transform: scale(1.05); /* Aumenta ligeiramente o botão no hover */
+    }
+
+
+/* Qualidade Garantida */
+.quality-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 40px;
+    background-color: #F9F9F9;
+}
+
+/* Testemunhos */
+.testimonial-section {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 8px;
+}
+
+.testimonial-card {
+    background-color: white;
+    border: 1px solid #DDD;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+    .testimonial-card img {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
+/* Lista de Produtos */
+#product-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+}
+
+#product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.product-card {
+    background-color: white;
+    border: 1px solid #DDD;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    width: 250px;
+    transition: transform 0.2s ease;
+}
+
+    .product-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .product-card img {
+        max-width: 100%;
+        border-radius: 4px;
+    }
