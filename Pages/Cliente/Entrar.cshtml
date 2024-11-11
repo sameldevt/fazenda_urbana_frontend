@@ -15,14 +15,14 @@
             <label for="senha" class="form-label">Senha</label>
             <input type="password" class="form-control" id="senha" placeholder="********" required>
             <div class="form-text">
-                <a asp-area="" asp-page="/AlterarSenha">Esqueci minha senha.</a>
+                <a asp-area="" asp-page="/Cliente/AlterarSenha">Esqueci minha senha.</a>
             </div>
         </div>
         <button type="submit" class="btn btn-dark w-100">Acessar conta</button>
     </form>
     <div class="text-center mt-3">
-        <span>Ainda não tem cadastro? <a asp-area="" asp-page="/Cadastro">Crie sua conta aqui.</a></span>
+        <span>Ainda não tem cadastro? <a asp-area="" asp-page="/Cliente/Cadastro">Crie sua conta aqui.</a></span>
     </div>
 </div>
 
-<script src="~/js/entrar.js" asp-append-version="true"></script>
+<script type="module" src="~/js/entrar.js" asp-append-version="true"></script>

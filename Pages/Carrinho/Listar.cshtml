@@ -1,0 +1,133 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Meu Carrinho";
+}
+
+<div class="container my-5 mx-5">
+
+    <div class="text-center">
+        <h1 class="display-4">Meu carrinho</h1>
+        <p class="lead">Veja os itens em seu carrinho, o valor da entrega e o valor total da compra.</p>
+    </div>
+
+    <div class="row text-center">
+        <p style="font: bold">Produtos</p>
+        <div class="col-md-8" id="listaItensCarrinho">
+           
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="bg-light p-3 rounded">
+                <h5>Resumo do Carrinho</h5>
+                <div class="d-flex justify-content-between">
+                    <p class="mb-1">Frete:</p>
+                    <p class="mb-1">R$ 0,00</p>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <p id="total-price" class="mb-1">Valor total da compra:</p>
+                    <p class="mb-1">R$ 22,00</p>
+                </div>
+            </div>
+            <button class="btn btn-dark w-100">Continuar compra</button>
+
+            <div class="mt-3">
+                <h5>Calcular frete</h5>
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="CEP para entrega">
+                    <button class="btn btn-outline-secondary">Calcular</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    function loadCart() {
+        const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+
+        if (carrinho.length === 0) {
+            document.getElementById('listaItensCarrinho').innerHTML = '<p>Seu carrinho está vazio.</p>';
+            return;
+        }
+
+        let carrinhoHtml = '';
+        carrinho.forEach(item => {
+            let total = calculateTotal(item.precoQuilo, item.quantidade);
+
+            carrinhoHtml += `
+                <div class="row align-items-center mb-4">
+                    <div class="col-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="${item.imagemUrl}" alt="Imagem de ${item.nome}" class="img-fluid rounded me-3" style="width: 80px; height: 80px;">
+                            <div>
+                                <h5 class="mb-1">${item.nome}</h5>
+                                <p class="mb-1">R$ ${item.precoQuilo.toFixed(2)} / kg</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-3">
+                        <p class="fw-bold">Quantidade (kg)</p>
+                        <input type="number" class="form-control" value="${item.quantidade}" min="0" step="0.1" onchange="updateQuantity(${item.id}, this.value)">
+                    </div>
+                    <div class="col-3">
+                        <p class="fw-bold">Valor total</p>
+                        <p id="total-${item.id}">R$ ${total.toFixed(2)}</p>
+                    </div>
+                    <div class="col-2">
+                        <button class="btn btn-outline-secondary w-100 mb-2" onclick="alterQuantity(${item.id})">Alterar</button>
+                        <button class="btn btn-outline-danger w-100" onclick="removeFromCart(${item.id})">Excluir</button>
+                    </div>
+                </div>
+            `;
+        });
+
+        document.getElementById('listaItensCarrinho').innerHTML = carrinhoHtml;
+    }
+
+    function calculateTotal(precoQuilo, quantidade) {
+        return precoQuilo * quantidade;
+    }
+
+    function updateQuantity(itemId, newQuantity) {
+        const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+
+        const itemIndex = carrinho.findIndex(item => item.id === itemId);
+        if (itemIndex !== -1) {
+            // Atualiza a quantidade do item no carrinho
+            carrinho[itemIndex].quantidade = parseFloat(newQuantity);
+            localStorage.setItem('carrinho', JSON.stringify(carrinho));
+
+            // Recalcula e atualiza o valor total do item na página
+            const total = calculateTotal(carrinho[itemIndex].precoQuilo, carrinho[itemIndex].quantidade);
+            document.getElementById(`total-${itemId}`).innerText = `R$ ${total}`;
+        }
+    }
+
+    function removeFromCart(produtoId) {
+        let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+
+        carrinho = carrinho.filter(item => item.id !== produtoId);
+
+        localStorage.setItem('carrinho', JSON.stringify(carrinho));
+
+        loadCart();
+    }
+
+    // function calculateTotal() {
+    //     const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+
+    //     const total = carrinho.reduce((total, item) => total + item.precoQuilo * item.quantidade, 0);
+
+    //     document.getElementById('total-price').innerText = `Total: R$ ${total.toFixed(2)}`;
+    // }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        loadCart();
+        calculateTotal();
+    });
+</script>

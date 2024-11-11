@@ -1,0 +1,186 @@
+@page "{id}"
+@model DetalhesModel
+@{
+    ViewData["Title"] = "Detalhes do Produto";
+}
+<div class="container my-5 mx-5">
+    <div class="row">
+        <div class="col-md-6">
+            <img id="product-image" src="" class="img-fluid" alt="Imagem do Produto" onerror="this.onerror=null;this.src='https://picsum.photos/200';">
+        </div>
+
+        <div class="col-md-6 ">
+            <h2 id="product-name">Nome do Produto</h2>
+            <p id="product-description">Descrição do produto.</p>
+            <p><strong id="product-price">Preço</strong></p>
+             <div>
+                    <label for="quantity" class="me-3">Quantidade (kg)</label>
+                    <input type="number" id="quantity" class="form-control w-25 me-3" value="1" min="0.1" step="0.1" onchange="calculateTotal()">
+                </div>
+                <div>
+                    <p>Valor total: </p>
+                    <div>R$ <span id="total-price">0,00</span></div>
+                </div>
+            <div class="d-flex align-items-center mb-3">
+                <div>
+                    <label for="quantity" class="me-3">Quantidade (kg)</label>
+                    <input type="number" id="quantity" class="form-control w-25 me-3" value="1" min="0.1" step="0.1" onchange="calculateTotal()">
+                </div>
+                <div>
+                    <p>Valor total: </p>
+                    <div>R$ <span id="total-price">0,00</span></div>
+                </div>
+            </div>
+            <div id="botoes">
+              
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-5">
+        <h4>Relacionados</h4>
+        <div id="related-products-carousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner" id="related-products">
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#related-products-carousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#related-products-carousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Próximo</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="modal fade" id="adicionadoAoCarrinhoModal" tabindex="-1" aria-labelledby="adicionadoAoCarrinhoModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="adicionadoAoCarrinhoModalLabel">Item adicionado com sucesso!</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+          </div>
+          <div class="modal-body" id="adicionadoAoCarrinhoModalBody">
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            <button type="button" class="btn btn-primary" onclick="window.location.href = '/Carrinho/Listar';">Ver carrinho</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<script type="module">
+    import { API_URL } from '/js/config.js';
+    
+    function addToCart(produto) {
+        let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+
+        const produtoExistente = carrinho.find(item => item.id === produto.id);
+    
+        if (produtoExistente) {
+            produtoExistente.quantidade++;
+        } else {
+            produto.quantidade = 1;
+            carrinho.push(produto);
+        }
+
+        localStorage.setItem('carrinho', JSON.stringify(carrinho));
+    }
+
+    function openModal(produto) {
+        document.getElementById('adicionadoAoCarrinhoModalLabel').innerText = `Item adicionado: ${produto.nome}`;
+        document.getElementById('adicionadoAoCarrinhoModalBody').innerText = `O produto ${produto.nome} foi adicionado ao seu carrinho com sucesso!`;
+
+        const modalBody = document.querySelector('#adicionadoAoCarrinhoModal .modal-body');
+        modalBody.innerHTML += `
+            <div>
+                <img src="${produto.imagemUrl}" alt="${produto.nome}" class="img-fluid">
+                <p><strong>Preço: </strong> R$ ${produto.precoQuilo.toFixed(2)} / kg</p>
+            </div>
+        `;
+
+        $('#adicionadoAoCarrinhoModal').modal('show');
+    }
+
+    function calculateTotal() {
+        const quantity = parseFloat(document.getElementById('quantity').value) || 0;
+        const pricePerKg = parseFloat(document.getElementById('product-price').innerText.replace('R$ ', '').replace('/ kg', '')) || 0;
+        const totalPrice = (quantity * pricePerKg).toFixed(2);
+        document.getElementById('total-price').innerText = totalPrice;
+    }
+
+    function loadProductDetails() {
+        const productId = @Model.ProductId;  // Certifique-se de que esta variável está sendo substituída corretamente no Razor
+        const contextUrl = `${API_URL}/produto/buscar/${productId}`;
+
+        fetch(contextUrl)
+            .then(response => response.json())
+            .then(produto => {
+                document.getElementById('product-image').src = produto.imagemUrl;
+                document.getElementById('product-name').innerText = produto.nome;
+                document.getElementById('product-description').innerText = produto.descricao;
+                document.getElementById('product-price').innerText = `R$ ${produto.precoQuilo.toFixed(2)} / kg`;
+
+                if (produto.quantity == 0) {
+                    document.getElementById('botoes').innerHTML = `
+                        <div class="botoes">
+                            <p style="color: red">Ops! Produto indisponível no momento. :(</p>
+                            <button class="btn btn-secondary mb-2 w-100">Avise-me quando estiver disponível</button> 
+                        </div>
+                    `;
+                } else {
+                    document.getElementById('botoes').innerHTML = `
+                        <div class="botoes">
+                            <button class="btn btn-primary mb-2 w-100">Comprar</button>
+                            <button class="btn btn-secondary mb-2 w-100" id="add-to-cart-btn">Adicionar ao carrinho</button>
+                        </div>
+                    `;
+
+                    // Atribuindo os eventos de clique após o HTML ser atualizado
+                    const addToCartButton = document.getElementById('add-to-cart-btn');
+                    addToCartButton.addEventListener('click', function() {
+                        addToCart(produto);
+                        openModal(produto);
+                    });
+                }
+
+                // Atualizando o total com base na quantidade e preço
+                calculateTotal();
+            })
+            .catch(error => console.error('Erro ao carregar os detalhes do produto:', error));
+    }
+
+    function loadRelatedProducts() {
+        const relatedUrl = `${API_URL}/produto/buscar-todos`;
+
+        fetch(relatedUrl)
+            .then(response => response.json())
+            .then(produtos => {
+                const relatedProductsContainer = document.getElementById('related-products');
+                produtos.forEach((produto, index) => {
+                    const activeClass = index === 0 ? 'active' : '';
+                    relatedProductsContainer.innerHTML += `
+                        <div class="carousel-item ${activeClass}">
+                            <div class="d-flex justify-content-center">
+                                <img src="${produto.imagemUrl}" class="img-fluid rounded" alt="${produto.nome}" style="width: 150px; height: auto;" onerror="this.onerror=null;this.src='https://picsum.photos/150';">
+                            </div>
+                            <div class="text-center mt-2">
+                                <p>${produto.nome}</p>
+                                <p><small>R$ ${produto.preco.toFixed(2)} / ${produto.unidade}</small></p>
+                                <a href="/ProdutoDetalhes/${produto.id}" class="btn btn-link">Ver detalhes</a>
+                            </div>
+                        </div>
+                    `;
+                });
+            })
+            .catch(error => console.error('Erro ao carregar os produtos relacionados:', error));
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        loadProductDetails();
+        loadRelatedProducts();
+    });
+</script>

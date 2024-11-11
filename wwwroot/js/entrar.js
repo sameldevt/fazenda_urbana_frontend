@@ -1,5 +1,5 @@
 import { API_URL } from './config.js';
-const contextUrl = `${API_URL}/usuario/entrar`
+const contextUrl = `${API_URL}/verdeviva/usuario/entrar`
 document.getElementById('loginForm').addEventListener('submit', async function (event) {
     event.preventDefault(); // Evita o comportamento padrão do formulário
 
@@ -20,9 +20,8 @@ document.getElementById('loginForm').addEventListener('submit', async function (
 
         if (response.ok) {
             const data = await response.json();
-            // Manipule a resposta bem-sucedida (por exemplo, redirecione o usuário)
-            console.log('Login bem-sucedido:', data);
-            window.location.href = '/'; // Exemplo de redirecionamento
+            localStorage.setItem('usuario', JSON.stringify(data));
+            window.location.href = '/';
         } else {
             // Manipule erros (como credenciais incorretas)
             const errorData = await response.json();

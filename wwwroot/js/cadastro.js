@@ -1,5 +1,5 @@
 import { API_URL } from './config.js';
-const contextUrl = `${API_URL}/usuario/registrar`;
+const contextUrl = `${API_URL}/verdeviva/usuario/registrar`;
 
 document.getElementById('cadastroForm').addEventListener('submit', async function (event) {
     event.preventDefault(); // Evita o envio padrão do formulário
@@ -21,7 +21,7 @@ document.getElementById('cadastroForm').addEventListener('submit', async functio
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                nomeCompleto: nomeCompleto,
+                nome: nomeCompleto,
                 senha: senha,
                 contato: { telefone: "", email: email }
             })
@@ -29,14 +29,10 @@ document.getElementById('cadastroForm').addEventListener('submit', async functio
 
         if (response.ok) {
             const data = await response.json();
-            // Manipule a resposta bem-sucedida (como redirecionar ou mostrar uma mensagem)
-            alert('Cadastro realizado com sucesso!');
             console.log('Resposta da API:', data);
-            // Redirecionar o usuário após o cadastro (opcional)
-            window.location.href = '/Entrar';
+            window.location.href = '/Cliente/Entrar';
         } else {
             const errorData = await response.json();
-            // Manipule os erros retornados pela API
             console.error('Erro no cadastro:', errorData);
             alert('Erro no cadastro: ' + errorData);
         }
