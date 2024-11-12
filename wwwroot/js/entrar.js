@@ -1,5 +1,5 @@
 import { API_URL } from './config.js';
-const contextUrl = `${API_URL}/verdeviva/usuario/entrar`
+const contextUrl = `${API_URL}/usuario/entrar`
 document.getElementById('loginForm').addEventListener('submit', async function (event) {
     event.preventDefault(); // Evita o comportamento padrão do formulário
 

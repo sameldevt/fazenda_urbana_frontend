@@ -1,5 +1,5 @@
 import { API_URL } from './config.js';
-const contextUrl = `${API_URL}/verdeviva/usuario/registrar`;
+const contextUrl = `${API_URL}/usuario/registrar`;
 
 document.getElementById('cadastroForm').addEventListener('submit', async function (event) {
     event.preventDefault(); // Evita o envio padrão do formulário
