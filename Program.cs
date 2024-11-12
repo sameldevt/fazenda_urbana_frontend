@@ -20,6 +20,24 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+app.Use(async (context, next) =>
+{
+    if (context.Request.Path == "/")
+    {
+        context.Response.Redirect("/Home");
+        return;
+    }
+
+    await next();
+});
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id}");
+});
+
 app.MapRazorPages();
 
 app.Run();
