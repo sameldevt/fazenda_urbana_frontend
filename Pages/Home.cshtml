@@ -29,13 +29,13 @@
                     <div class="testimonial-card">
                         <div class="testimonial-header">
                         </div>
-                            <div class="stars">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
                         <p>“Entrega sempre rápida. Nunca comi uma couve tão fresca!”</p>
                         <div class="d-flex align-items-center mt-3 justify-content-center">
                             <img src="https://via.placeholder.com/50" alt="Foto do cliente">
@@ -93,6 +93,40 @@
 
     </div>
 
+
+    <div class="container-fluid my-5">
+        <!-- Seção O que é uma Fazenda Urbana -->
+        <section id="about-urban-farm" class="d-flex align-items-center mb-5" style="min-height: 400px;">
+            <div class="col-6 p-0">
+                <img src="https://via.placeholder.com/600x400" alt="Imagem de uma fazenda urbana" class="img-fluid w-100 h-100">
+            </div>
+            <div class="col-6 d-flex flex-column justify-content-center p-5">
+                <h2 class="display-6 text-center mb-4">O que é uma Fazenda Urbana?</h2>
+                <p class="text-muted text-center">
+                    Fazendas urbanas são espaços destinados para o plantio de vegetais, legumes, frutas e hortaliças em meio às grandes metrópoles. Esses espaços podem ser produzidos de forma “vertical”, no alto de prédios por exemplo, ou em estufas especiais criadas para produção de alimentos.
+                </p>
+                <p class="text-muted text-center">
+                    Por conta do aumento exponencial da população mundial, diversas formas de suprir a demanda de recursos são pensadas diariamente. Elas precisam ser práticas, funcionais e, principalmente, sustentáveis. As fazendas urbanas são uma proposta para tal problemática, sendo mais eficientes no cenário urbano, mais econômicas e com menor custo de produção.
+                </p>
+            </div>
+        </section>
+
+        <!-- Seção Sobre Nós -->
+        <section id="about-us" class="d-flex align-items-center mb-5" style="min-height: 400px;">
+            <div class="col-6 d-flex flex-column justify-content-center p-5">
+                <h2 class="display-6 text-center mb-4">Sobre Nós</h2>
+                <p class="text-muted text-center">
+                    A Fazenda VerdeViva foi criada com o objetivo de garantir acessibilidade a alimentos de qualidade, produzidos de maneira sustentável, promovendo a segurança alimentar e os cenários ambiental, social e econômico do país. Para isso, utilizamos a mais alta tecnologia para a produção de nossas hortaliças, verduras, frutas, legumes e vegetais, com monitoramento constante, capacitação dos colaboradores responsáveis e atenção aos mínimos detalhes em cada etapa de produção.
+                </p>
+            </div>
+            <div class="col-6 p-0">
+                <img src="https://via.placeholder.com/600x400" alt="Imagem de sustentabilidade" class="img-fluid w-100 h-100">
+            </div>
+        </section>
+    </div>
+
+
+
     <!-- Lista de Produtos Section -->
     <div id="product-section" class="text-center">
         <h2 class="my-4">Todos os itens</h2>
@@ -110,7 +144,7 @@
 </div>
 
 <!-- Script para buscar e renderizar os produtos -->
-<script type="module" src="~/js/produtos.js" asp-append-version="true"></script>
+<!--<script type="module" src="~/js/produtos.js" asp-append-version="true"></script>-->
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const observer = new IntersectionObserver(entries => {
@@ -124,11 +158,11 @@
                 }
             });
         }, {
-            threshold: 0.2 // Inicia a animação quando 20% do elemento está visível
+            threshold: 0.1 // Inicia a animação quando 10% do elemento está visível
         });
 
         // Observa as seções principais
-        const sections = document.querySelectorAll(".image-container, .quality-section, .testimonial-card");
+        const sections = document.querySelectorAll(".image-container, .overlay, .cta-button, .quality-section, .testimonial-card, #product-section, #about-urban-farm, #about-us");
         sections.forEach(section => observer.observe(section));
 
     });

@@ -22,34 +22,17 @@
 .visible {
     opacity: 1;
     transform: translateY(0);
-    animation: fadeIn 1.5s ease-out;
+    animation: fadeIn 1s ease-out;
 }
 
-
-
-/* Configura uma sequência para cada card de testemunho 
-    .testimonial-card:nth-child(1) {
-        animation-delay: 0.2s;
-    }
-
-    .testimonial-card:nth-child(2) {
-        animation-delay: 0.4s;
-    }
-
-    .testimonial-card:nth-child(3) {
-        animation-delay: 0.6s;
-    }
-        */
 
 /* Hero Section */
 .image-container {
     background-image: url('/imgs/teste.jpg');
-    /*
-        */
     /*background-image: none;*/
     background-size: cover;
     background-position: center;
-    height: 100vh; /* Ocupa toda a altura da tela */
+    height: 90vh; 
     position: relative;
     display: flex;
     justify-content: center;
@@ -102,7 +85,7 @@
 
 /* Qualidade Garantida */
 .quality-section {
-    min-height: 100vh;
+    min-height: 90vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -168,3 +151,38 @@
         max-width: 100%;
         border-radius: 4px;
     }
+
+
+
+
+
+
+
+
+/* Estilo para as seções "O que é uma Fazenda Urbana?" e "Sobre Nós" */
+#about-urban-farm, #about-us {
+    min-height: 90vh;
+    padding: 2rem 0;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+/*
+    #about-urban-farm h2, #about-us h2 {
+        font-weight: bold;
+        color: #2c3e50;
+    }
+
+    #about-urban-farm p, #about-us p {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+        #about-urban-farm p + p, #about-us p + p {
+            margin-top: 1rem;
+        }
+
+.container p.text-muted {
+    color: #606060 !important;
+}
+    */
