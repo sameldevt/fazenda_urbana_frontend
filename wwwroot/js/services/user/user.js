@@ -37,10 +37,10 @@
                 <a class="nav-link text-dark" href="/Sobre">Sobre</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-dark px-3" href="/Cliente/Cadastro">Cadastre-se</a>
+                <a class="nav-link text-dark px-3" href="/Acesso/Cadastro">Cadastre-se</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-light btn btn-dark px-3" href="/Cliente/Entrar">Entrar</a>
+                <a class="nav-link text-light btn btn-dark px-3" href="/Acesso/Entrar">Entrar</a>
             </li>
         `;
     }

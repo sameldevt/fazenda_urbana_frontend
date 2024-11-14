@@ -1,4 +1,4 @@
-import { API_URL } from './config.js';
+import { API_URL } from '../configuration/appConfiguration.js';
 const contextUrl = `${API_URL}/produto/buscar-todos`
 
 function createProductCard(produto) {
@@ -17,16 +17,16 @@ function createProductCard(produto) {
 }
 
 function loadProducts() {
-    fetch(contextUrl)  // URL da sua API que retorna a lista de produtos
+    fetch(contextUrl) 
         .then(response => response.json())
         .then(produtos => {
             const productList = document.getElementById('product-list');
-            productList.innerHTML = ''; // Limpa antes de inserir novos produtos
+            productList.innerHTML = ''; 
+
             produtos.forEach(produto => {
                 productList.innerHTML += createProductCard(produto);
             });
 
-            // Seleciona todos os produtos e adiciona os eventos de clique após carregar todos
             const productContainers = document.querySelectorAll(".product-container");
             productContainers.forEach(product => {
                 product.addEventListener("click", function () {
@@ -40,5 +40,4 @@ function loadProducts() {
         });
 }
 
-// Carregar produtos ao carregar a página
 document.addEventListener("DOMContentLoaded", loadProducts);

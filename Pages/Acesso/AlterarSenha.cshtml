@@ -13,12 +13,12 @@
             <input type="email" class="form-control" id="email" placeholder="seunome@email.com" required>
         </div>
         <div class="mb-3 text-start">
-            <label for="nova-senha" class="form-label">Nova Senha</label>
-            <input type="password" class="form-control" id="nova-senha" placeholder="********" required>
+            <label for="new-password" class="form-label">Nova Senha</label>
+            <input type="password" class="form-control" id="new-password" placeholder="********" required>
         </div>
         <div class="mb-3 text-start">
-            <label for="confirmacao-senha" class="form-label">Confirmação da Nova Senha</label>
-            <input type="password" class="form-control" id="confirmacao-senha" placeholder="********" required>
+            <label for="confirm-password" class="form-label">Confirmação da Nova Senha</label>
+            <input type="password" class="form-control" id="confirm-password" placeholder="********" required>
         </div>
         <button type="submit" class="btn btn-dark w-100">Alterar Senha</button>
         <button type="button" class="btn btn-light w-100 mt-2">Cancelar</button>
@@ -27,3 +27,5 @@
         <span>Ainda não tem cadastro? <a asp-area="" asp-page="/Cadastro">Crie sua conta aqui.</a></span>
     </div>
 </div>
+
+<script type="module" src="~/js/services/access/changePassword.js"></script>

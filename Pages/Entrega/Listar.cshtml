@@ -15,7 +15,6 @@
             <h5 class="font-weight-bold mb-4">Opções de Entrega</h5>
             <div class="container my-5">
                 <div class="col-md-8" id="enderecos-container">
-                    <!-- Endereços serão carregados aqui -->
                 </div>
             </div>
 
@@ -28,159 +27,22 @@
                     <h5 class="card-title font-weight-bold">Resumo do Pedido</h5>
                     <div class="d-flex justify-content-between mt-3">
                         <p class="mb-1">Subtotal:</p>
-                        <p id="sub-total" class="mb-1 font-weight-bold">R$ 120,00</p>
+                        <p id="sub-total" class="mb-1 font-weight-bold"></p>
                     </div>
                     <div class="d-flex justify-content-between">
                         <p class="mb-1">Frete:</p>
-                        <p id="valor-do-frete" class="mb-1 font-weight-bold">R$ 15,90</p>
+                        <p class ="mb-1 font-weight-bold">R$ <span id="shipping-price"></span>  </p>
                     </div>
                     <div class="d-flex justify-content-between border-top pt-3 mt-3">
                         <p class="mb-1 font-weight-bold">Total:</p>
-                        <p class="mb-1 font-weight-bold" id="total-price"></p>
+                        <p class="mb-1 font-weight-bold"><span id="total-price"></span></p>
                     </div>
-                </div>
+                </div>  
             </div>
 
-            <button class="btn btn-dark w-100 mt-3">Continuar</button>
+            <button class="btn btn-dark w-100 mt-3" onclick="window.location.href='/Pagamento/FormasPagamento'">Continuar</button>
         </div>
     </div>
+
+    <script src="~/js/services/delivery/listAddresses.js"></script>
 </div>
-
-<script>
-    function loadCart() {
-        const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-
-        if (carrinho.length === 0) {
-            document.getElementById('listaItensCarrinho').innerHTML = '<p>Seu carrinho está vazio.</p>';
-            return;
-        }
-    }
-
-    function calculateTotal(precoQuilo, quantidade) {
-        return precoQuilo * quantidade;
-    }
-
-    function updateQuantity(itemId, newQuantity) {
-        const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-
-        const itemIndex = carrinho.findIndex(item => item.id === itemId);
-        if (itemIndex !== -1) {
-            carrinho[itemIndex].quantidade = parseFloat(newQuantity);
-            localStorage.setItem('carrinho', JSON.stringify(carrinho));
-
-            const total = calculateTotal(carrinho[itemIndex].precoQuilo, carrinho[itemIndex].quantidade);
-            calculateCartTotal();
-            document.getElementById(`total-${itemId}`).innerText = `R$ ${total.toFixed(2)}`;
-        }
-    }
-
-    function removeFromCart(produtoId) {
-        let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-
-        carrinho = carrinho.filter(item => item.id !== produtoId);
-
-        localStorage.setItem('carrinho', JSON.stringify(carrinho));
-
-        loadCart();
-    }
-
-    function calculateCartTotal() {
-        const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-
-        if (carrinho.length === 0) {
-            document.getElementById('cart-summary').innerHTML = ``;
-            return;
-        }
-
-        const total = carrinho.reduce((total, item) => total + item.precoQuilo * item.quantidade, 0);
-
-        document.getElementById('sub-total').innerText = `R$ ${total.toFixed(2)}`;
-
-        return total;
-    }
-
-    function calculateTotalPrice() {
-        const total = calculateCartTotal();
-        const shippingCost = getShippingCost();
-
-        document.getElementById('.total-price').innerText += `R$ ${(total + shippingCost)}`;
-    }
-
-    function getShippingCost() {
-        const card = document.querySelector('.address-card');
-        const frete = card.querySelector('#frete').innerText;
-        return frete;
-    }
-
-    function criarCardsDeEndereco() {
-        const usuario = JSON.parse(localStorage.getItem("usuario"));
-
-        if (!usuario || !usuario.enderecos || usuario.enderecos.length === 0) {
-            window.location.href = "/Entrega/Endereco";
-            return;
-        }
-
-        const container = document.getElementById("enderecos-container");
-        container.innerHTML = "";
-
-        usuario.enderecos.forEach(endereco => {
-            // Gera um valor aleatório para o frete
-            const frete = (Math.random() * (30 - 10) + 10).toFixed(2);
-
-            const card = document.createElement("div");
-            card.classList.add("address-card", "mb-3");
-
-            card.innerHTML = `
-                <div class="address-card w-100 shadow-sm mb-3">
-                    <div class="card-body">
-                        <div class="form-check ">
-                            <input class="form-check-input" type="radio" name="endereco" id="endereco${endereco.id}" value="${endereco.id}">
-                            <label class="form-check-label font-weight-bold" for="endereco${endereco.id}">
-                                ${endereco.logradouro}, ${endereco.numero} 
-                            </label>
-                            <p id="frete">R$ ${frete}</p>
-                        </div>
-                        <div class="text-muted mt-2">
-                            <p class="mb-0">${endereco.cidade}, ${endereco.estado}</p>
-                        </div>
-                        <div class="text-muted mt-2">
-                            <p class="mb-0">${endereco.cep}</p>
-                        </div>
-                    </div>
-                </div>
-            `;
-
-            container.appendChild(card);
-        });
-
-        function definirValorDoFrete(card) {
-            const frete = card.querySelector('#frete').innerText;
-
-            const freteElement = document.querySelector('valor-do-frete');
-            freteElement.innerText = frete;
-        }
-
-        const cards = document.querySelectorAll('.address-card');
-
-        cards.forEach(card => {
-            card.addEventListener('click', () => {
-                const radios = document.querySelectorAll('input[name="endereco"]');
-                radios.forEach(radio => {
-                    radio.checked = false;
-                });
-
-                const radio = card.querySelector('input[type="radio"]');
-                if (radio) {
-                    radio.checked = true;
-                }
-                definirValorDoFrete(card);
-            });
-        });
-    }
-
-    document.addEventListener('DOMContentLoaded', function () {
-        loadCart();
-        criarCardsDeEndereco();
-        calculateTotalPrice();
-    });
-</script>

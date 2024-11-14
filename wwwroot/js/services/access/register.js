@@ -1,15 +1,15 @@
-import { API_URL } from './config.js';
+import { API_URL } from './js/services/configuration/appConfiguration.js';
 const contextUrl = `${API_URL}/usuario/registrar`;
 
-document.getElementById('cadastroForm').addEventListener('submit', async function (event) {
-    event.preventDefault(); // Evita o envio padrão do formulário
+document.getElementById('register-form').addEventListener('submit', async function (event) {
+    event.preventDefault();
 
-    const nomeCompleto = document.getElementById('nome-completo').value;
+    const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
-    const senha = document.getElementById('senha').value;
-    const termos = document.getElementById('termos').checked;
+    const password = document.getElementById('password').value;
+    const terms = document.getElementById('terms').checked;
 
-    if (!termos) {
+    if (!term) {
         alert('Você precisa aceitar os Termos de Serviço e Política de Privacidade.');
         return;
     }
@@ -20,9 +20,8 @@ document.getElementById('cadastroForm').addEventListener('submit', async functio
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                nome: nomeCompleto,
-                senha: senha,
+            body: JSON.stringify({ 
+                senha: password,
                 contato: { telefone: "", email: email }
             })
         });
@@ -37,7 +36,6 @@ document.getElementById('cadastroForm').addEventListener('submit', async functio
             alert('Erro no cadastro: ' + errorData);
         }
     } catch (error) {
-        // Erros de rede ou outras falhas
         console.error('Erro de rede:', error);
         alert('Erro de rede. Tente novamente mais tarde.');
     }

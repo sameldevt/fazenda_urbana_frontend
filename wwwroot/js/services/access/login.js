@@ -1,10 +1,12 @@
-import { API_URL } from './config.js';
+import { API_URL } from '/js/services/configuration/appConfiguration.js';
+
 const contextUrl = `${API_URL}/usuario/entrar`
-document.getElementById('loginForm').addEventListener('submit', async function (event) {
-    event.preventDefault(); // Evita o comportamento padrão do formulário
+
+document.getElementById('login-form').addEventListener('submit', async function (event) {
+    event.preventDefault();
 
     const email = document.getElementById('email').value;
-    const senha = document.getElementById('senha').value;
+    const password = document.getElementById('password').value;
 
     try {
         const response = await fetch(contextUrl, {
@@ -14,7 +16,7 @@ document.getElementById('loginForm').addEventListener('submit', async function (
             },
             body: JSON.stringify({
                 email: email,
-                senha: senha
+                senha: password
             })
         });
 
@@ -23,7 +25,6 @@ document.getElementById('loginForm').addEventListener('submit', async function (
             localStorage.setItem('usuario', JSON.stringify(data));
             window.location.href = '/';
         } else {
-            // Manipule erros (como credenciais incorretas)
             const errorData = await response.json();
             console.error('Erro no login:', errorData);
             alert('Erro no login: ' + errorData.message);

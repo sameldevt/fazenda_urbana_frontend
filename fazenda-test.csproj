@@ -7,4 +7,8 @@
     <RootNamespace>fazenda_test</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\js\services\payment\pixPayment.js" />
+  </ItemGroup>
+
 </Project>

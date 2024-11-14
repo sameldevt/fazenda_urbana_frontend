@@ -19,7 +19,6 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1 justify-content-end" id="navbar-items">
-                        <!-- Navbar items will be injected here -->
                     </ul>
                 </div>
             </div>
@@ -71,9 +70,9 @@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script type="module" src="~/js/config.js" asp-append-version="true"></script>
+    <script type="module" src="~/js/services/configuration/appConfiguration.js" asp-append-version="true"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/js/usuario.js" asp-append-version="true"></script>
+    <script src="~/js/services/user/user.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

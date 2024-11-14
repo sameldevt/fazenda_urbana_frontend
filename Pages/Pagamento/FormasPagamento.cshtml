@@ -8,50 +8,41 @@
     <h1 class="display-4">Formas de Pagamento</h1>
     <p class="text-muted">Realize o pagamento para prosseguir com a compra.</p>
 
-    <div class="row mt-4">
-        <!-- Cartão -->
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Cartão</h5>
-                    <ul class="list-unstyled text-muted">
-                        <li>Parcele em até 3x sem juros</li>
-                        <li>Também aceitamos VA e VR</li>
-                    </ul>
-                    <button class="btn btn-dark">Selecionar</button>
-                    <p class="mt-3 text-muted">Valor total<br>R$ XX,XX</p>
-                </div>
-            </div>
-        </div>
-
+    <div class="container d-flex justify-content-center gap-4 mt-4">
         <!-- PIX -->
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
+        <div class="col-md-4 h-100">
+            <div class="card h-100 d-flex flex-column">
+                <div class="card-body d-flex flex-column justify-content-between">
                     <h5 class="card-title">PIX</h5>
                     <ul class="list-unstyled text-muted">
                         <li>Frete Grátis a partir de R$ 50</li>
                         <li>Ganhe 5% de desconto</li>
                     </ul>
-                    <button class="btn btn-dark">Selecionar</button>
-                    <p class="mt-3 text-muted">Valor total<br>R$ XX,XX</p>
+                    <div class="mt-auto">
+                        <button class="botao-selecionar btn btn-dark">Selecionar</button>
+                        <p class="mt-3 text-muted">Valor total<br>R$ XX,XX</p>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Boleto -->
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
+        <div class="col-md-4 h-100">
+            <div class="card h-100 d-flex flex-column">
+                <div class="card-body d-flex flex-column justify-content-between">
                     <h5 class="card-title">Boleto</h5>
                     <ul class="list-unstyled text-muted">
                         <li>Confirmação em até 1 dia útil</li>
                         <li>Favor nos enviar o comprovante</li>
                     </ul>
-                    <button class="btn btn-dark">Selecionar</button>
-                    <p class="mt-3 text-muted">Valor total<br>R$ XX,XX</p>
+                    <div class="mt-auto">
+                        <button class="botao-selecionar btn btn-dark">Selecionar</button>
+                        <p class="mt-3 text-muted">Valor total<br>R$ XX,XX</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script type="module" src="~/js/services/payment/choosePaymentOption.js"></script>
 </div>
