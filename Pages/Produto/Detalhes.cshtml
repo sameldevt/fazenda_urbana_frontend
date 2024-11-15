@@ -4,39 +4,30 @@
     ViewData["Title"] = "Detalhes do Produto";
 }
 
-<div class="container my-5 mx-5">
-    <div class="row">
+<div class="container my-5 d-flex justify-content-center">
+    <div class="row w-75">
         <div class="col-md-6">
-            <img id="product-image" src="" class="img-fluid" alt="Imagem do Produto" onerror="this.onerror=null;this.src='https://picsum.photos/200';">
+            <img id="product-image" src="" class="img-thumbnail w-80 h-auto" alt="Imagem do Produto" onerror="this.onerror=null;this.src='https://picsum.photos/200';">
         </div>
 
-        <div class="col-md-6 ">
+        <div class="col">
             <h2 id="product-name"></h2>
             <p id="product-description"></p>
-            <p><strong id="product-price"></strong></p>
-             <div>
-                    <label for="quantity" class="me-3">Quantidade (kg)</label>
-                    <input type="number" id="quantity" class="form-control w-25 me-3" value="1" min="0.1" step="0.1" onchange="calculateTotal()">
-                </div>
-                <div>
-                    <p>Valor total: </p>
-                    <div>R$ <span id="total-price"></span></div>
-                </div>
-            <div class="d-flex align-items-center mb-3">
-                <div>
-                    <label for="quantity" class="me-3">Quantidade (kg)</label>
-                    <input type="number" id="quantity" class="form-control w-25 me-3" value="1" min="0.1" step="0.1" onchange="calculateTotal()">
-                </div>
-                <div>
-                    <p>Valor total: </p>
-                    <div>R$ <span id="total-price"></span></div>
-                </div>
+            <p class="mb-0 me-3"><strong id="product-price"></strong></p>
+            <div class="col-md-7 d-flex justify-content-center align-items-center">
+                <label for="quantity" class="me-3">Quantidade (kg)</label>
+                <input type="number" id="quantity" class="form-control w-50" value="1.0" min="0.1" step="0.1">
             </div>
-            <div id="buttons"></div>
+            <div class="mt-5">
+                <button class="btn btn-primary mb-2 w-100">Comprar</button>
+                <button class="btn btn-secondary mb-2 w-100" id="add-to-cart-btn">Adicionar ao carrinho</button>
+            </div>
+            </div>
         </div>
     </div>
 
-    <div class="mt-5">
+    <div class="container my-5 d-flex justify-content-center">
+    <div class="row w-75">
         <h4>Relacionados</h4>
         <div id="related-products-carousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner" id="related-products">
@@ -49,18 +40,20 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Próximo</span>
             </button>
+
         </div>
     </div>
+</div>
+
 
     <div class="modal fade" id="added-to-cart-modal" tabindex="-1" aria-labelledby="added-to-cart-modal-label" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-                    <h5 class="modal-title" id="added-to-cart-modal-label">Item adicionado com sucesso!</h5>
+            <h5 class="modal-title" id="added-to-cart-modal-label">Item adicionado com sucesso!</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
           </div>
                 <div class="modal-body" id="added-to-cart-modal-body">
-
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
