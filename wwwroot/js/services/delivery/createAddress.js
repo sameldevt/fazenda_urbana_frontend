@@ -1,7 +1,7 @@
-﻿import { API_URL } from './js/services/configuration/appConfiguration.js';
+﻿import { API_URL } from '../configuration/appConfiguration.js';
 
 const form = document.getElementById('address-form');
-const register-btn = document.getElementById('register-btn');
+const registerButton = document.getElementById('register-btn');
 const inputs = form.querySelectorAll('input');
 
 const initialData = {};
@@ -14,7 +14,7 @@ async function atualizarUsuarioNoLocalStorage(response) {
     localStorage.setItem('usuario', JSON.stringify(usuarioAtualizado));
 }
 
-register-btn.addEventListener('click', async function () {
+registerButton.addEventListener('click', async function () {
     inputs.forEach(input => input.disabled = true);
 
     const user = JSON.parse(localStorage.getItem('usuario'));

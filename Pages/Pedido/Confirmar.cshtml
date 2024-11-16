@@ -3,22 +3,22 @@
 @{
     ViewData["Title"] = "Confirmar pedido";
 }
-<div class="container my-5">
+<div class="container my-5 w-75">
 
     <div class="text-center mb-4">
         <h1 class="display-4">Confirmar pedido</h1>
         <p class="lead">Veja os itens do seu pedido, o valor da entrega e o valor total do pedido.</p>
     </div>
 
-    <div class="row">
+    <div class="row order-items-section">
         <div class="col-md-8">
             <h5 class="font-weight-bold mb-4">Produtos</h5>
 
-            <div id="cart-items-list">
+            <div class="order-item-list">
                 <div class="card mb-3">
                     <div class="card-body d-flex justify-content-between">
-                        <p class="mb-0">Produto 1</p>
-                        <p class="mb-0">R$ 50,00</p>
+                        <p class="mb-0"></p>
+                        <p class="mb-0"></p>
                     </div>
                 </div>
             </div>
@@ -27,23 +27,32 @@
         <div class="col-md-4">
             <div class="card border-0 shadow-sm">
                 <div class="card-body">
-                    <h5 class="card-title font-weight-bold">Resumo do pedido</h5>
-                    <div class="d-flex justify-content-between mt-3">
-                        <p class="mb-1">Valor dos produtos:</p>
-                        <p class="mb-1 font-weight-bold" id="products-price"></p>
+                    <h5 class="card-title font-weight-bold">Resumo do Pedido</h5>
+                    <div class="d-flex justify-content-between">
+                        <p class="mb-1">Tipo de pagamento:</p>
+                        <p class="mb-1 font-weight-bold"><span class="payment-method"></span>  </p>
                     </div>
-                    <div class="d-flex justify-content-between mt-3">
-                        <p class="mb-1">Valor do frete:</p>
-                        <p class="mb-1 font-weight-bold" id="shipping-price"></p>
+                    <div class="d-flex justify-content-between">
+                        <p class="mb-1">Produto(s) (<span class="product-quantity"></span>)</p>
+                        <p class="mb-1 font-weight-bold">R$ <span class="sub-total"></span></p>
                     </div>
-                    <div class="d-flex justify-content-between mt-3">
-                        <p class="mb-1">Valor total da compra:</p>
-                        <p class="mb-1 font-weight-bold" id="total-price"></p>
+                    <div class="d-flex justify-content-between">
+                        <p class="mb-1">Frete:</p>
+                        <p class="mb-1 font-weight-bold"><span class="shipping-cost"></span>  </p>
                     </div>
-                    <button onclick="window.location.href = '/Entrega/Listar';" class="btn btn-dark w-100 mt-3">Confirmar compra</button>
+                    <div class="d-flex justify-content-between border-top pt-3 mt-3">
+                        <p class="mb-1 font-weight-bold">Total:</p>
+                        <p class="mb-1 font-weight-bold">R$<span class="total-price"></span></p>
+                    </div>
                 </div>
             </div>
+
+            <button class="btn btn-success w-100 mt-3 confirm-order-button">Confirmar pedido</button>
         </div>
+
+        
+
+      
     </div>
 
     <script type="module" src="~/js/services/order/confirmOrder.js"></script>

@@ -1,7 +1,7 @@
 ﻿import { API_URL } from '../configuration/appConfiguration.js';
-import { loadCart } from '../cart/cartManagement.js';
+import * as cartManagement from '../cart/cartManagement.js';
 
-let cart;
+let cart = cartManagement.cart;
 let cartProduct;
 function openModal() {
     const product = cart['itens'].find(item => item.id === cartProduct.id);
@@ -26,7 +26,7 @@ function calculateTotal() {
     const totalPrice = (quantity * pricePerKg).toFixed(2);
     document.getElementById('product-price').innerText = `R$ ${totalPrice}`;
 
-    return totalPrice;
+    return Number(totalPrice);
 }
 
 function loadProductDetails(productId) {
@@ -125,7 +125,6 @@ document.getElementById('quantity').addEventListener('change', function () {
 document.addEventListener("DOMContentLoaded", () => {
     const productId = getProductId();
 
-    cart = loadCart();
     loadProductDetails(productId);
     loadRelatedProducts(productId);
 });

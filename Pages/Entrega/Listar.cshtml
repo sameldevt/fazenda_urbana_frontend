@@ -4,7 +4,7 @@
     ViewData["Title"] = "Escolha como receber";
 }
 
-<div class="container my-5 mx-5">
+<div class="container my-5 w-75 justify-content-center">
     <div class="text-center mb-4">
         <h1 class="display-4">Escolher Forma de Entrega</h1>
         <p class="lead">Selecione onde deseja receber seu pedido.</p>
@@ -14,7 +14,7 @@
         <div class="col-md-8">
             <h5 class="font-weight-bold mb-4">Opções de Entrega</h5>
             <div class="container my-5">
-                <div class="col-md-8" id="enderecos-container">
+                <div class="col-md-8" id="addresses-container">
                 </div>
             </div>
 
@@ -26,23 +26,23 @@
                 <div class="card-body">
                     <h5 class="card-title font-weight-bold">Resumo do Pedido</h5>
                     <div class="d-flex justify-content-between mt-3">
-                        <p class="mb-1">Subtotal:</p>
-                        <p id="sub-total" class="mb-1 font-weight-bold"></p>
+                        <p class="mb-1">Produto(s) (<span class="product-quantity"></span>)</p>
+                        <p class="mb-1 font-weight-bold sub-total"></p>
                     </div>
                     <div class="d-flex justify-content-between">
                         <p class="mb-1">Frete:</p>
-                        <p class ="mb-1 font-weight-bold">R$ <span id="shipping-price"></span>  </p>
+                        <p class ="mb-1 font-weight-bold"><span class="shipping-cost"></span>  </p>
                     </div>
                     <div class="d-flex justify-content-between border-top pt-3 mt-3">
                         <p class="mb-1 font-weight-bold">Total:</p>
-                        <p class="mb-1 font-weight-bold"><span id="total-price"></span></p>
+                        <p class="mb-1 font-weight-bold"><span class="total-price"></span></p>
                     </div>
                 </div>  
             </div>
 
-            <button class="btn btn-dark w-100 mt-3" onclick="window.location.href='/Pagamento/FormasPagamento'">Continuar</button>
+            <button class="btn btn-success w-100 mt-3" onclick="window.location.href='/Pagamento/FormasPagamento'">Continuar</button>
         </div>
     </div>
 
-    <script src="~/js/services/delivery/listAddresses.js"></script>
+    <script type="module" src="~/js/services/delivery/listAddresses.js"></script>
 </div>

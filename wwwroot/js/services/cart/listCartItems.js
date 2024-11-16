@@ -1,7 +1,7 @@
 ﻿import * as cartManagement from './cartManagement.js';
 import { API_URL } from '../configuration/appConfiguration.js';
 
-let cart;
+let cart = cartManagement.cart;
 
 function loadProductDetails(productId) {
     const contextUrl = `${API_URL}/produto/buscar/${productId}`;
@@ -22,14 +22,21 @@ function loadProductDetails(productId) {
 }
 async function loadProductCards() {
     if (cart['itens'] == null || cart['itens'].length === 0) {
-        document.getElementById('cart-item-list').innerHTML = '<p>Seu carrinho está vazio.</p>';
+        document.querySelector('.cart-title').innerHTML = ``;
+        document.querySelector('.cart-items-section').innerHTML = `
+        <div class="col container my-5 d-flex flex-column align-items-center">
+            <h1 class="display-4">Seu carrinho está vazio!</h1>
+            <p class="lead">Que tal descobrir novos produtos?</p>
+            <button class="btn btn-success mt-5 mb-2 w-50" onclick="window.location.href='/Produto/Listar'">Buscar produtos</button>
+        </div>
+        `;
+        document.querySelector('.cart-summary').innerHTML = ``;
         return;
     }
 
-    let cartHtml = '';
+    let cartHtml = ``;
     for (const item of cart['itens']) {
         const product = await loadProductDetails(item.id);
-
         cartHtml += `
             <div class="row align-items-center mb-4" id="cart-item-${item.id}">
                 <div class="col-4">
@@ -48,7 +55,7 @@ async function loadProductCards() {
                 </div>
                 <div class="col-3">
                     <p class="fw-bold">Valor total</p>
-                    <p id="total-${item.id}">R$ ${item.subTotal}</p>
+                    <p id="total-${item.id}">R$ ${item.subTotal.toFixed(2)}</p>
                 </div>
                 <div class="col-2">
                     <button id="delete-item-${item.id}" class="btn btn-outline-danger w-100">Excluir</button>
@@ -75,11 +82,13 @@ async function loadProductCards() {
             })
         }
     });
+
+    const cartItensTotal = cartManagement.calculateCartItensTotal();
+
+    document.querySelector('.product-quantity').innerText = cart['itens'].length;
+    document.querySelector('.total-price').innerText = cartItensTotal.toFixed(2);    
 }
 
-
-
 document.addEventListener('DOMContentLoaded', function () {
-    cart = cartManagement.loadCart();
     loadProductCards();
 });

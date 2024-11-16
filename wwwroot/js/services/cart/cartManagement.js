@@ -1,5 +1,5 @@
 ﻿
-let cart = loadCart();
+export let cart = loadCart();
 export function loadCart() {
     let cart = JSON.parse(localStorage.getItem('carrinho')) || null;
 
@@ -32,23 +32,26 @@ export function loadCart() {
     return cart; 
 }
 
-export function calculateCartTotal() {
+export function calculateCartItensTotal() {
     if (cart['itens'] == null || cart['itens'].length === 0) {
-        document.getElementById('cart-summary').innerHTML = ``;
+        document.getElementById('cart-summary').innerHTML = '';
         return;
     }
 
-    const total = cart['itens'].reduce((total, item) => total + item.subTotal, 0);
-
-    document.getElementById('total-price').innerText = `R$ ${total}`;
+    const total = cart['itens'].reduce((total, item) => Number(total) + Number(item.subTotal), 0);
 
     return total;
+}
+
+export function calculateFinalTotal() {
+    const cartItensTotalPrice = calculateCartItensTotal();
+
+    cart['finalPrice'] = Number(cartItensTotalPrice) + Number(cart['shippingCost']);
 }
 
 export function removeFromCart(productId) {
     cart['itens'] = cart['itens'].filter(item => item.id !== productId);
     updateCart(cart);
-    loadCart();
 }
 
 export function updateItemQuantity(itemId, newQuantity) {
@@ -58,13 +61,15 @@ export function updateItemQuantity(itemId, newQuantity) {
         cart['itens'][itemIndex].quantity = parseFloat(newQuantity);
 
         const total = cart['itens'][itemIndex].basePrice * cart['itens'][itemIndex].quantity;
-        document.getElementById(`total-${itemId}`).innerText = `R$ ${total}`;
+        document.getElementById(`total-${itemId}`).innerText = `R$ ${total.toFixed(2)}`;
+        document.querySelector('.total-price').innerText = `${total.toFixed(2)}`;
 
-        calculateCartTotal();
         updateCart(cart);
     }
 }
 
 export function updateCart(cart) {
+    calculateCartItensTotal();
+    calculateFinalTotal();
     localStorage.setItem('carrinho', JSON.stringify(cart));
 }

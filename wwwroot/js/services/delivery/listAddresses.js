@@ -1,105 +1,85 @@
-﻿let cart = JSON.parse(localStorage.getItem('carrinho')) || [];
+﻿import * as cartManagement from '../cart/cartManagement.js';
 
-function updateCart() {
-    localStorage.setItem('carrinho', JSON.stringify(cart));
-}
-
-function checkCart() {
-    if (cart.length === 0) {
-        document.getElementById('listaItensCarrinho').innerHTML = '<p>Seu carrinho está vazio.</p>';
-        return;
-    }
-}
-
-function calculateTotal(weightPrice, quantity) {
-    return weightPrice * quantity;
-}
-
-
-function calculateCartTotal() {
-    if (cart.length === 0) {
-        document.getElementById('cart-summary').innerHTML = ``;
-        return;
-    }
-
-    const total = cart.reduce((total, item) => total + item.precoQuilo * item.quantidade, 0);
-
-    document.getElementById('sub-total').innerText = `R$ ${total.toFixed(2)}`;
-
-    return Number(total);
-}
+let cart = cartManagement.cart;
 
 function calculateTotalPrice() {
-    const total = calculateCartTotal();
-    const shippingCost = getShippingCost();
-    const totalPrice = Number(total) + Number(shippingCost);
+    const cartTotal = cartManagement.calculateCartItensTotal();
+    const shippingCost = cart['shippingCost'];
 
-    document.getElementById('total-price').innerText = `R$ ${totalPrice.toFixed(2)}`;
-}
+    const totalPrice = Number(cartTotal) + Number(shippingCost);
 
-function getShippingCost() {
-    const card = document.querySelector('.address-card');
-    const frete = card.querySelector('#frete').innerText;
-    return frete;
+    document.querySelector('.total-price').innerText = `R$ ${totalPrice.toFixed(2)}`;
+
+    cartManagement.calculateFinalTotal();
 }
 
 function setShippingCost(card) {
-    const frete = card.querySelector('#frete').innerText;
+    const cardShippingCost = card.querySelector('span').innerText;
+    const shippingCostTag = document.querySelector('.shipping-cost');
+    const cartItensPrice = cartManagement.calculateCartItensTotal();
 
-    const freteElement = document.getElementById('valor-do-frete');
+    const shippingCost = cartItensPrice > 50 ? 0 : Number(cardShippingCost); 
 
-    cart['shippingCost'] = frete;
+    cart['shippingCost'] = Number(shippingCost);
 
-    updateCart();
+    cartManagement.updateCart(cart);
 
-    freteElement.innerText = frete;
+    shippingCostTag.innerHTML = cartItensPrice > 50 ?
+        `
+            <p>R$<s>${cardShippingCost}</s> R$ 0,00 </p>
+        `
+        : shippingCost.toFixed(2);
 }
 
 function createAddressCards() {
     const user = JSON.parse(localStorage.getItem("usuario"));
 
-    if (!user || !user.enderecos || user.enderecos.length === 0) {
+    if (!user.enderecos || user.enderecos.length === 0) {
         window.location.href = "/Entrega/Endereco";
         return;
     }
 
-    const container = document.getElementById("enderecos-container");
-    container.innerHTML = "";
+    const addressContainer = document.getElementById("addresses-container");
+    addressContainer.innerHTML = "";
 
-    user.enderecos.forEach(endereco => {
-        const frete = (Math.random() * (30 - 10) + 10).toFixed(2);
+    user.enderecos.forEach(address => {
+        const shippingCost = (Math.random() * 15).toFixed(2);
 
-        const card = document.createElement("div");
-        card.classList.add("address-card", "mb-3");
+        const addressCard = document.createElement("div");
+        addressCard.classList.add("address-card", "mb-3");
 
-        card.innerHTML = `
+        addressCard.innerHTML = `
                 <div class="address-card w-100 shadow-sm mb-3">
-                    <div class="card-body">
-                        <div class="form-check ">
-                            <input class="form-check-input" type="radio" name="endereco" id="endereco${endereco.id}" value="${endereco.id}">
-                            <label class="form-check-label font-weight-bold" for="endereco${endereco.id}">
-                                ${endereco.logradouro}, ${endereco.numero} 
-                            </label>
-                            <p>R$ <span id="frete">${frete}</span></p>
+                    <div class="card-body col align-items-center">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="address" id="address${address.id}" value="${address.id}">
+                            <div class="d-flex justify-content-between">
+                                <label class="form-check-label font-weight-bold" for="endereco${address.id}">
+                                    ${address.logradouro}, ${address.numero} 
+                                </label>
+                                <p>R$ <span id="card-shipping-cost-${address.id}">${shippingCost}</span></p>
+                            </div>   
                         </div>
                         <div class="text-muted mt-2">
-                            <p class="mb-0">${endereco.cidade}, ${endereco.estado}</p>
+                            <p class="mb-0">${address.cidade}, ${address.estado}</p>
                         </div>
                         <div class="text-muted mt-2">
-                            <p class="mb-0">${endereco.cep}</p>
+                            <p class="mb-0">${address.cep}</p>
                         </div>
                     </div>
                 </div>
             `;
 
-        container.appendChild(card);
+        addressContainer.appendChild(addressCard);
     });
 
-    const cards = document.querySelectorAll('.address-card');
+    const addressCards = document.querySelectorAll('.address-card');
 
-    cards.forEach(card => {
+    addressCards.forEach(card => {
         card.addEventListener('click', () => {
             setShippingCost(card);
+            setRadioButton(card);
+            calculateTotalPrice();
         });
     });
 }
@@ -113,14 +93,39 @@ function checkUser() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    checkUser();
-    checkCart();
-    createAddressCards();
-    calculateTotalPrice();
+function setRadioButton(card) {
+    const addressesCard = document.querySelectorAll('.address-card');
 
+    addressesCard.forEach((card) => {
+        const radio = card.querySelector('input[type="radio"]');
+        radio.checked = false;
+    });
+
+    const radio = card.querySelector('input[type="radio"]');
+    radio.checked = true;
+    setShippingCost(card);
+    calculateTotalPrice();
+}
+
+function selectFirstAddressCard() {
     const firstAddressCard = document.querySelector('.address-card');
     const radio = firstAddressCard.querySelector('input[type="radio"]');
     radio.checked = true;
     setShippingCost(firstAddressCard);
+    calculateTotalPrice();
+}
+
+function setProductsInfo() {
+    const productsQuantity = cart['itens'].length;
+    const cartTotalPrice = cartManagement.calculateCartItensTotal();
+
+    document.querySelector('.product-quantity').innerText = productsQuantity;
+    document.querySelector('.sub-total').innerText = cartTotalPrice.toFixed(2);
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    checkUser();
+    createAddressCards();
+    selectFirstAddressCard();
+    setProductsInfo();
 });
