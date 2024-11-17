@@ -27,7 +27,7 @@ async function loadProductCards() {
         <div class="col container my-5 d-flex flex-column align-items-center">
             <h1 class="display-4">Seu carrinho está vazio!</h1>
             <p class="lead">Que tal descobrir novos produtos?</p>
-            <button class="btn btn-success mt-5 mb-2 w-50" onclick="window.location.href='/Produto/Listar'">Buscar produtos</button>
+            <button class="btn primary-button-color mt-5 mb-2 w-50" onclick="window.location.href='/Produto/Listar'">Buscar produtos</button>
         </div>
         `;
         document.querySelector('.cart-summary').innerHTML = ``;
@@ -44,7 +44,7 @@ async function loadProductCards() {
                         <img src="${product.imagemUrl}" alt="Imagem de ${product.nome}" class="img-fluid rounded me-3" style="width: 80px; height: 80px;">
                         <div>
                             <h5 class="mb-1">${product.nome}</h5>
-                            <p class="mb-1">R$ ${item.basePrice.toFixed(2)} / kg</p>
+                            <p class="mb-1">R$ ${item.basePrice.toFixed(2)}</p>
                         </div>
                     </div>
                 </div>
@@ -55,7 +55,7 @@ async function loadProductCards() {
                 </div>
                 <div class="col-3">
                     <p class="fw-bold">Valor total</p>
-                    <p id="total-${item.id}">R$ ${item.subTotal.toFixed(2)}</p>
+                    <p id="total-${item.id}">R$ ${(item.subTotal.toFixed(2))}</p>
                 </div>
                 <div class="col-2">
                     <button id="delete-item-${item.id}" class="btn btn-outline-danger w-100">Excluir</button>

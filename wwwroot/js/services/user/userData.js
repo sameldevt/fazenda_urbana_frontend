@@ -1,25 +1,67 @@
-﻿const form = document.getElementById('personalDataForm');
-const btnEdit = document.getElementById('btnEdit');
-const actionButtons = document.getElementById('actionButtons');
-const initialButtons = document.getElementById('initialButtons');
-const fields = form.querySelectorAll('input:not([type="password"])');
+﻿import { API_URL } from '../configuration/appConfiguration.js';
 
-btnEdit.addEventListener('click', function () {
-    fields.forEach(field => field.disabled = false);
-    initialButtons.classList.add('d-none');
-    actionButtons.classList.remove('d-none');
+const contextUrl = `${API_URL}/cliente/atualizar`
+const user = JSON.parse(localStorage.getItem('usuario'));
+
+const nameInput = document.getElementById('name');
+const emailInput = document.getElementById('email');
+const phoneInput = document.getElementById('phone');
+
+const editButton = document.getElementById('edit-button');
+const changePasswordButton = document.getElementById('change-password-button');
+
+function loadUserInfo() {
+    nameInput.value = user['nome'];
+    emailInput.value = user['contato']['email'];
+    phoneInput.value = user['contato']['telefone'];
+}
+
+async function changeUserData() {
+    user['nome'] = nameInput.value;
+    user['contato']['email'] = emailInput.value;
+    user['contato']['telefone'] = phoneInput.value;
+
+    fetch(contextUrl, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user)
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro na requisição');
+            }
+            localStorage.setItem('usuario', user);
+            return response.json();
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+        });
+}
+
+editButton.addEventListener('click', () => {
+    if (editButton.innerText === "Editar") {
+        nameInput.removeAttribute("disabled");
+        emailInput.removeAttribute("disabled");
+        phoneInput.removeAttribute("disabled");
+
+        editButton.innerText = "Salvar";
+    } else {
+        nameInput.setAttribute("disabled", "true");
+        emailInput.setAttribute("disabled", "true");
+        phoneInput.setAttribute("disabled", "true");
+
+        changeUserData();
+
+        editButton.innerText = "Editar";
+    }
 });
 
-const initialValues = {};
-fields.forEach(field => {
-    initialValues[field.id] = field.value;
+changePasswordButton.addEventListener('click', () => {
+    window.location.href = "/Cliente/AlterarSenha";
 });
 
-document.querySelector('#actionButtons .btn-light').addEventListener('click', function () {
-    fields.forEach(field => {
-        field.disabled = true;
-        field.value = initialValues[field.id];
-    });
-    actionButtons.classList.add('d-none');
-    initialButtons.classList.remove('d-none');
+document.addEventListener('DOMContentLoaded', () => {
+    loadUserInfo();
 });

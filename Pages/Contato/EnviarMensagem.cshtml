@@ -1,7 +1,7 @@
 @page
 @model IndexModel
 @{
-    ViewData["Title"] = "Contato";
+    ViewData["Title"] = "Enviar mensagem de contato";
 }
 
 <div class="container my-5">
@@ -11,15 +11,15 @@
                 <h1 class="display-4">Fale Conosco</h1>
                 <p class="text-muted">Responderemos no e-mail informado em até 1 dia útil.</p>
             </div>
-            <form>
+            <form class="contact-message-form">
                 <div class="row mb-3">
                     <div class="col">
-                        <label for="nome" class="form-label">Nome</label>
-                        <input type="text" class="form-control" id="nome" placeholder="Seu nome" required>
+                        <label for="name" class="form-label">Nome</label>
+                        <input type="text" class="form-control" id="name" placeholder="Seu nome" required>
                     </div>
                     <div class="col">
-                        <label for="sobrenome" class="form-label">Sobrenome</label>
-                        <input type="text" class="form-control" id="sobrenome" placeholder="Seu sobrenome" required>
+                        <label for="last-name" class="form-label">Sobrenome</label>
+                        <input type="text" class="form-control" id="last-name" placeholder="Seu sobrenome" required>
                     </div>
                 </div>
                 <div class="mb-3">
@@ -27,11 +27,11 @@
                     <input type="email" class="form-control" id="email" placeholder="seunome@email.com" required>
                 </div>
                 <div class="mb-3">
-                    <label for="mensagem" class="form-label">Mensagem</label>
-                    <textarea class="form-control" id="mensagem" rows="5" placeholder="Insira aqui sua dúvida ou mensagem." required></textarea>
+                    <label for="message" class="form-label">Mensagem</label>
+                    <textarea class="form-control" id="message" rows="5" placeholder="Insira aqui sua dúvida ou mensagem." required></textarea>
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn btn-dark">Enviar mensagem</button>
+                    <button id="send-message-button" class="btn w-50 primary-button-color">Enviar mensagem</button>
                 </div>
             </form>
         </div>
@@ -49,3 +49,5 @@
         </div>
     </div>
 </div>
+
+<script type="module" src="~/js/services/contact/sendContactMessage.js"></script>

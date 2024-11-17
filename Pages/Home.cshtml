@@ -8,21 +8,18 @@
 <link rel="stylesheet" href="~/css/homepage.css" asp-append-version="true" />
 
 <div class="container-fluid p-0">
-    <!-- Hero Section -->
     <div class="image-container">
         <div class="overlay">
             <h1 class="display-4">Produtos frescos, saudáveis e próximos da sua casa</h1>
             <p class="lead">Conheça nossa variedade incrível de hortaliças, frutas, verduras e vegetais!</p>
-            <a asp-area="" asp-page="/Produto/Listar" class="btn cta-button">Ver catálogo</a>
+            <button id="catalog-button" class="btn primary-button-color">Ver catálogo</button>
         </div>
     </div>
 
-    <!-- Qualidade Garantida Section -->
     <div class="quality-section">
         <h2 class="display-6">Qualidade Garantida</h2>
         <p class="text-muted mb-5">Veja o que nossos clientes dizem sobre nós.</p>
 
-        <!-- Testemunhos -->
         <div class="testimonial-section">
             <div class="row">
                 <div class="col-md-4 mb-4">
@@ -38,8 +35,7 @@
                         </div>
                         <p>“Entrega sempre rápida. Nunca comi uma couve tão fresca!”</p>
                         <div class="d-flex align-items-center mt-3 justify-content-center">
-                            <img src="https://via.placeholder.com/50" alt="Foto do cliente">
-                            <div class="ms-3">
+                            <div>
                                 <strong>Marcos de Andrade</strong><br>
                                 <small>Cliente desde 2021</small>
                             </div>
@@ -59,8 +55,7 @@
                         </div>
                         <p>“Tudo sempre fresquinho e sem agrotóxicos! Excelente qualidade.”</p>
                         <div class="d-flex align-items-center mt-3 justify-content-center">
-                            <img src="https://via.placeholder.com/50" alt="Foto do cliente">
-                            <div class="ms-3">
+                            <div>
                                 <strong>Juliana Souza</strong><br>
                                 <small>Cliente desde 2018</small>
                             </div>
@@ -80,8 +75,7 @@
                         </div>
                         <p>“Melhor fazenda urbana da cidade! Comprarei mais vezes.”</p>
                         <div class="d-flex align-items-center mt-3 justify-content-center">
-                            <img src="https://via.placeholder.com/50" alt="Foto do cliente">
-                            <div class="ms-3">
+                            <div>
                                 <strong>Roberto César</strong><br>
                                 <small>Cliente desde 2020</small>
                             </div>
@@ -95,10 +89,9 @@
 
 
     <div class="container-fluid my-5">
-        <!-- Seção O que é uma Fazenda Urbana -->
         <section id="about-urban-farm" class="d-flex align-items-center mb-5" style="min-height: 400px;">
             <div class="col-6 p-0">
-                <img src="https://via.placeholder.com/600x400" alt="Imagem de uma fazenda urbana" class="img-fluid w-100 h-100">
+                <img src="https://www.boaspraticasods.pr.gov.br/sites/ods/arquivos_restritos/files/imagem/2023-07/00301096.jpg" alt="Imagem de uma fazenda urbana" class="img-fluid w-100 h-100">
             </div>
             <div class="col-6 d-flex flex-column justify-content-center p-5">
                 <h2 class="display-6 text-center mb-4">O que é uma Fazenda Urbana?</h2>
@@ -111,7 +104,6 @@
             </div>
         </section>
 
-        <!-- Seção Sobre Nós -->
         <section id="about-us" class="d-flex align-items-center mb-5" style="min-height: 400px;">
             <div class="col-6 d-flex flex-column justify-content-center p-5">
                 <h2 class="display-6 text-center mb-4">Sobre Nós</h2>
@@ -120,51 +112,17 @@
                 </p>
             </div>
             <div class="col-6 p-0">
-                <img src="https://via.placeholder.com/600x400" alt="Imagem de sustentabilidade" class="img-fluid w-100 h-100">
+                <img src="https://institucional.upis.br/blog/wp-content/uploads/2019/07/sustentabilidade-o-que-e-entenda-diferentes-tipos-praticas.jpg" alt="Imagem de sustentabilidade" class="img-fluid w-100 h-100">
             </div>
         </section>
     </div>
 
-
-
-    <!-- Lista de Produtos Section -->
     <div id="product-section" class="text-center">
         <h2 class="my-4">Todos os itens</h2>
         <div id="product-list">
-            <!-- Exemplo de produto -->
-            <div class="product-card">
-                <img src="https://via.placeholder.com/150" alt="Imagem do produto">
-                <h5 class="mt-3">Nome do Produto</h5>
-                <p class="text-muted">Descrição breve do produto.</p>
-                <span class="text-success fw-bold">R$9,99</span>
-                <button class="btn btn-outline-success mt-3">Comprar</button>
-            </div>
+           
         </div>
     </div>
 </div>
 
-<!-- Script para buscar e renderizar os produtos -->
-<!--<script type="module" src="~/js/produtos.js" asp-append-version="true"></script>-->
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("visible");
-                    //observer.unobserve(entry.target); // Remove a observação para evitar novas animações
-                }
-                else {
-                    entry.target.classList.remove("visible");
-                }
-            });
-        }, {
-            threshold: 0.1 // Inicia a animação quando 10% do elemento está visível
-        });
-
-        // Observa as seções principais
-        const sections = document.querySelectorAll(".image-container, .overlay, .cta-button, .quality-section, .testimonial-card, #product-section, #about-urban-farm, #about-us");
-        sections.forEach(section => observer.observe(section));
-
-    });
-
-</script>
+<script type="module" src="~/js/home.js"></script>

@@ -120,7 +120,7 @@ function setProductsInfo() {
     const cartTotalPrice = cartManagement.calculateCartItensTotal();
 
     document.querySelector('.product-quantity').innerText = productsQuantity;
-    document.querySelector('.sub-total').innerText = cartTotalPrice.toFixed(2);
+    document.querySelector('.sub-total').innerText = `R$ ${cartTotalPrice.toFixed(2)}`;
 }
 
 document.addEventListener('DOMContentLoaded', function () {

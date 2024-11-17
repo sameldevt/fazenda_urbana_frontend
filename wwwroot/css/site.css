@@ -2,6 +2,11 @@ html {
     font-size: 14px;
 }
 
+input[type="radio"] {
+    accent-color: #689f39;
+}
+
+
 @media (min-width: 768px) {
     html {
         font-size: 16px;
@@ -19,17 +24,39 @@ html {
 
 
 .nav-color {
-    background: #D5F4D6;
+    background: #689f39;
 }
+
+.primary-button-color {
+    color: white;
+    font-weight: bold;
+    background-color: #689f39;
+}
+
+    .primary-button-color:hover {
+        color: white;
+        transform: scale(1.01);
+    }
+
+.secondary-button-color {
+    color: black;
+    font-weight: bold;
+    background-color: #ddedc8;
+}
+
+    .secondary-button-color:hover {
+        color: black;
+        transform: scale(1.01);
+    }
 
 body {
     margin-bottom: 60px;
 }
 
 .product-image {
-    width: 200px; /* Defina a largura desejada */
-    height: 200px; /* Defina a altura desejada */
-    object-fit: contain; /* Mantém o aspecto da imagem preenchendo o container */
+    width: 200px; 
+    height: 200px;
+    object-fit: contain;
 }
 .product-container {
     display: flex;
@@ -46,3 +73,4 @@ body {
 .product{
     cursor: pointer;
 }
+

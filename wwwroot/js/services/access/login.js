@@ -1,4 +1,4 @@
-import { API_URL } from '/js/services/configuration/appConfiguration.js';
+import { API_URL } from '../configuration/appConfiguration.js';
 
 const contextUrl = `${API_URL}/usuario/entrar`
 
@@ -24,10 +24,8 @@ document.getElementById('login-form').addEventListener('submit', async function 
             const data = await response.json();
             localStorage.setItem('usuario', JSON.stringify(data));
             window.location.href = '/';
-        } else {
-            const errorData = await response.json();
-            console.error('Erro no login:', errorData);
-            alert('Erro no login: ' + errorData.message);
+        } else if (response.status === 400) {
+            alert('Senha inválida!');
         }
     } catch (error) {
         console.error('Erro de rede:', error);

@@ -1,0 +1,34 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Meus pedidos";
+}
+
+<div class="container my-5 w-75">
+    <div class="order-list">
+        <div class="text-center mb-4">
+            <h1 class="text-center display-4">Meus pedidos</h1>
+            <p class="text-center">Veja o histórico de todos os seus pedidos realizados.</p>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table align-middle">
+                <thead>
+                    <tr>
+                        <th scope="col">Pedido</th>
+                        <th scope="col">Data</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Valor total</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+</div>
+
+<script type="module" src="~/js/services/order/listOrders.js"></script>
+
+

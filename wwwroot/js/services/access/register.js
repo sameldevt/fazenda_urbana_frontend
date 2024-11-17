@@ -1,4 +1,4 @@
-import { API_URL } from './js/services/configuration/appConfiguration.js';
+import { API_URL } from '../configuration/appConfiguration.js';
 const contextUrl = `${API_URL}/usuario/registrar`;
 
 document.getElementById('register-form').addEventListener('submit', async function (event) {
@@ -9,7 +9,7 @@ document.getElementById('register-form').addEventListener('submit', async functi
     const password = document.getElementById('password').value;
     const terms = document.getElementById('terms').checked;
 
-    if (!term) {
+    if (!terms) {
         alert('Você precisa aceitar os Termos de Serviço e Política de Privacidade.');
         return;
     }
@@ -21,6 +21,7 @@ document.getElementById('register-form').addEventListener('submit', async functi
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ 
+                nome: name,
                 senha: password,
                 contato: { telefone: "", email: email }
             })
@@ -29,7 +30,8 @@ document.getElementById('register-form').addEventListener('submit', async functi
         if (response.ok) {
             const data = await response.json();
             console.log('Resposta da API:', data);
-            window.location.href = '/Cliente/Entrar';
+            alert('Conta criada com sucesso!');
+            window.location.href = '/Acesso/Entrar';
         } else {
             const errorData = await response.json();
             console.error('Erro no cadastro:', errorData);

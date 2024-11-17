@@ -4,7 +4,7 @@
     ViewData["Title"] = "Entrar";
 }
 
-<div class="text-center my-5 w-75">
+<div class="container my-5 w-50 justify-content-center text-center">
     <h1 class="display-4">Entrar</h1>
     <form id="login-form">
         <div class="mb-3 text-start">
@@ -15,13 +15,13 @@
             <label for="password" class="form-label">Senha</label>
             <input type="password" class="form-control" id="password" placeholder="********" required>
             <div class="form-text">
-                <a asp-area="" asp-page="/Cliente/AlterarSenha">Esqueci minha senha.</a>
+                <a asp-area="" asp-page="/Acesso/AlterarSenha">Esqueci minha senha.</a>
             </div>
         </div>
-        <button type="submit" class="btn btn-dark w-100">Acessar conta</button>
+        <button type="submit" class="btn primary-button-color w-100">Acessar conta</button>
     </form>
     <div class="text-center mt-3">
-        <span>Ainda não tem cadastro? <a asp-area="" asp-page="/Cliente/Cadastro">Crie sua conta aqui.</a></span>
+        <span>Ainda não tem cadastro? <a asp-area="" asp-page="/Acesso/Cadastro">Crie sua conta aqui.</a></span>
     </div>
 </div>
 

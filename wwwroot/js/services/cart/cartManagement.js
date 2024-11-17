@@ -34,7 +34,7 @@ export function loadCart() {
 
 export function calculateCartItensTotal() {
     if (cart['itens'] == null || cart['itens'].length === 0) {
-        document.getElementById('cart-summary').innerHTML = '';
+        document.querySelector('.cart-summary').innerHTML = '';
         return;
     }
 
@@ -61,7 +61,7 @@ export function updateItemQuantity(itemId, newQuantity) {
         cart['itens'][itemIndex].quantity = parseFloat(newQuantity);
 
         const total = cart['itens'][itemIndex].basePrice * cart['itens'][itemIndex].quantity;
-        document.getElementById(`total-${itemId}`).innerText = `R$ ${total.toFixed(2)}`;
+        document.getElementById(`total-${itemId}`).innerText = `R$ ${total}`;
         document.querySelector('.total-price').innerText = `${total.toFixed(2)}`;
 
         updateCart(cart);

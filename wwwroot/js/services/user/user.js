@@ -7,40 +7,40 @@
     if (usuario) {
         navbarItems.innerHTML = `
             <li class="nav-item">
-                <a class="nav-link text-dark" href="/Produto/Listar">Produtos</a>
+                <a class="nav-link text-white" href="/Produto/Listar">Produtos</a>
             </li>
-            <li class="nav-item me-2">
-                <a class="nav-link text-dark" href="/Cliente/Contato">Contato</a>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="/Contato/EnviarMensagem">Contato</a>
             </li>                        
-            <li class="nav-item me-2">
-                <a class="nav-link text-dark" href="/Cliente/Pedidos">Meus pedidos</a>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="/Pedido/Listar">Meus pedidos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-dark" href="/Carrinho/Listar">Meu carrinho</a>
+                <a class="nav-link text-white" href="/Carrinho/Listar">Carrinho</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-dark" href="/Cliente/Perfil">Minha conta</a>
+                <a class="nav-link text-white" href="/Cliente/Perfil">Minha conta</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-light btn btn-dark px-3" href="#" onclick="logout()">Sair</a>
+                <a class="nav-link text-white" href="#" onclick="logout()">Sair</a>
             </li>
         `;
     } else {
         navbarItems.innerHTML = `
             <li class="nav-item">
-                <a class="nav-link text-dark" href="/Produto/Listar">Produtos</a>
+                <a class="nav-link text-white" href="/Produto/Listar">Produtos</a>
             </li>
-            <li class="nav-item me-2">
-                <a class="nav-link text-dark" href="/Cliente/Contato">Contato</a>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="/Contato/EnviarMensagem">Contato</a>
             </li>                        
-            <li class="nav-item me-2">
-                <a class="nav-link text-dark" href="/Sobre">Sobre</a>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="/Sobre">Sobre</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-dark px-3" href="/Acesso/Cadastro">Cadastre-se</a>
+                <a class="nav-link text-white" href="/Acesso/Cadastro">Cadastre-se</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-light btn btn-dark px-3" href="/Acesso/Entrar">Entrar</a>
+                <a class="nav-link text-white" href="/Acesso/Entrar">Entrar</a>
             </li>
         `;
     }

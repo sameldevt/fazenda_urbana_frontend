@@ -5,28 +5,21 @@
 }
 
 
-<div class="container my-5 text-center">
+<div class="container my-5 text-center w-75">
     <h1 class="display-4">Minha Conta</h1>
 
-    <!-- Ícone de usuário -->
     <div class="my-3">
         <i class="bi bi-person-circle" style="font-size: 5rem;"></i>
     </div>
 
-    <!-- Nome da pessoa -->
-    <h3>Mariana Santos</h3>
+    <h3 id="user-name"></h3>
 
-    <!-- Data de associação -->
-    <p class="text-muted small">Membro desde 24/01/2018.</p>
+    <p class="text-muted small">Membro desde <span id="member-since"></span></p>
 
-    <!-- Botões -->
     <div class="d-grid gap-3 w-50 mx-auto my-4">
-        <a asp-area="" asp-page="/Cliente/DadosPessoais" class="btn btn-dark">Dados Pessoais</a>
-        <a asp-area="" asp-page="/Cliente/Endereco" class="btn btn-secondary">Endereço de Entrega</a>
+        <a asp-area="" asp-page="/Cliente/DadosPessoais" class="btn primary-button-color">Dados Pessoais</a>
+        <a asp-area="" asp-page="/Cliente/Enderecos" class="btn secondary-button-colo">Endereços cadastrados</a>
     </div>
 
-    <!-- Botão de sair -->
-    <a href="#" class="text-danger">
-        <i class="bi bi-box-arrow-right"></i> Sair
-    </a>
+    <script type="module" src="~/js/services/user/profile.js"></script>
 </div>
