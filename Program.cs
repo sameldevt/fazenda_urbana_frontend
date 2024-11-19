@@ -41,6 +41,7 @@ app.Use(async (context, next) =>
         return;
     }
 
+    context.Response.Headers.Append("Content-Type", "text/html; charset=utf-8");
     await next();
 });
 

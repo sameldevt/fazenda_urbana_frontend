@@ -10,5 +10,4 @@
   <ItemGroup>
     <None Include="wwwroot\js\services\payment\pixPayment.js" />
   </ItemGroup>
-
 </Project>
