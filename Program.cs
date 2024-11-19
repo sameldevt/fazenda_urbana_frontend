@@ -1,10 +1,27 @@
+using Microsoft.AspNetCore.Localization;
+using System.Globalization;
+
 var builder = WebApplication.CreateBuilder(args);
 
+// Adicionar suporte a localização (idiomas)
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+
+// Configurar serviços do Razor Pages
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configurar middleware de localização
+var supportedCultures = new[] { "pt-BR", "en-US" };
+var localizationOptions = new RequestLocalizationOptions
+{
+    DefaultRequestCulture = new RequestCulture("pt-BR"),
+    SupportedCultures = supportedCultures.Select(c => new CultureInfo(c)).ToList(),
+    SupportedUICultures = supportedCultures.Select(c => new CultureInfo(c)).ToList()
+};
+app.UseRequestLocalization(localizationOptions);
+
+// Configuração do pipeline de requisições HTTP
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
@@ -15,8 +32,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthorization();
-
+// Middleware para redirecionar da raiz para "/Home"
 app.Use(async (context, next) =>
 {
     if (context.Request.Path == "/")
@@ -28,13 +44,17 @@ app.Use(async (context, next) =>
     await next();
 });
 
+app.UseAuthorization();
+
+// Configurar o mapeamento de endpoints (Controller)
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllerRoute(
         name: "default",
-        pattern: "{controller=Home}/{action=Index}/{id}");
+        pattern: "{controller=Home}/{action=Index}/{id?}");
 });
 
+// Mapeamento do Razor Pages
 app.MapRazorPages();
 
 app.Run();
