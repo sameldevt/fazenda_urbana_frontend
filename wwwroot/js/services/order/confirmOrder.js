@@ -35,13 +35,14 @@ function confirmOrder() {
             if (!response.ok) {
                 throw new Error('Erro na requisição');
             }
-            return response.json();
         }).then(orderDto => {
         window.location.href = '/Pedido/Resumo';
     })
     .catch(error => {
         console.error('Erro:', error);
     });
+
+    localStorage.removeItem('carrinho');
 }
 
 function loadProductDetails(productId) {

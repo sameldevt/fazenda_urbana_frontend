@@ -3,6 +3,7 @@ import * as cartManagement from '../cart/cartManagement.js';
 
 let cart = cartManagement.cart;
 let cartProduct;
+
 function openModal() {
     const product = cart['itens'].find(item => item.id === cartProduct.id);
 
@@ -46,7 +47,15 @@ function loadProductDetails(productId) {
                 const quantity = parseFloat(document.getElementById('quantity').value) || 0;
                 addToCart(product, quantity);
                 openModal(product);
-            });          
+            });     
+            
+            const buyNowButton = document.getElementById('buy-now-button');
+
+            buyNowButton.addEventListener('click', function () {
+                const quantity = parseFloat(document.getElementById('quantity').value) || 0;
+                addToCart(product, quantity);
+                window.location.href = "/Entrega/Listar";
+            });
         })
         .catch(error => console.error('Erro ao carregar os detalhes do produto:', error));
 }

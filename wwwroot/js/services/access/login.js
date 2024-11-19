@@ -21,12 +21,16 @@ document.getElementById('login-form').addEventListener('submit', async function 
         });
 
         if (response.ok) {
+            localStorage.removeItem('usuario');
+
             const data = await response.json();
             localStorage.setItem('usuario', JSON.stringify(data));
+
             window.location.href = '/';
         } else if (response.status === 400) {
             alert('Senha inválida!');
         }
+
     } catch (error) {
         console.error('Erro de rede:', error);
         alert('Erro de rede, tente novamente mais tarde.');
