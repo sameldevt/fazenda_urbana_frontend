@@ -29,6 +29,9 @@ document.getElementById('login-form').addEventListener('submit', async function 
             window.location.href = '/';
         } else if (response.status === 400) {
             alert('Senha inválida!');
+        } else if (response.status === 404) {
+            alert('Usuário não cadastrado!');
+            window.location.href = "/Acesso/Cadastro";
         }
 
     } catch (error) {

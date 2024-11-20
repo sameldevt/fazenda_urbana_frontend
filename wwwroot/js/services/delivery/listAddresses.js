@@ -88,7 +88,7 @@ function checkUser() {
     const user = JSON.parse(localStorage.getItem("usuario"));
 
     if (!user) {
-        window.location.href = "/Cliente/Entrar";
+        window.location.href = "/Acesso/Entrar";
         return;
     }
 }

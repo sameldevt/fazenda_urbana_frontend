@@ -72,6 +72,11 @@ async function loadProductCards() {
             updateButton.addEventListener('change', () => {
                 const input = document.getElementById(`update-item-${item.id}`);
                 cartManagement.updateItemQuantity(item.id, input.value);
+
+                const cartItensTotal = cartManagement.calculateCartItensTotal();
+
+                document.querySelector('.product-quantity').innerText = cart['itens'].length;
+                document.querySelector('.total-price').innerText = cartItensTotal.toFixed(2); 
             });
         }
         const deleteButton = document.getElementById(`delete-item-${item.id}`);
@@ -79,6 +84,7 @@ async function loadProductCards() {
             deleteButton.addEventListener('click', () => {
                 cartManagement.removeFromCart(item.id);
                 document.getElementById(`cart-item-${item.id}`).innerHTML = ``;
+                loadProductCards();
             })
         }
     });
